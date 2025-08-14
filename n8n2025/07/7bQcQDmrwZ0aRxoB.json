@@ -1,0 +1,103 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-04T17:58:59.745Z",
+  "id": "7bQcQDmrwZ0aRxoB",
+  "meta": null,
+  "name": "SimpleIT - Busca Lançamentos Financeiros Contas a Pagar (LBV)",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://legiaoda142256.rm.cloudtotvs.com.br:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/MEUERP/1/F",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        -100
+      ],
+      "id": "c128c339-4ef4-4888-8d49-abd946bb52b8",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "DfSfvZDufnD4bi5P",
+          "name": "LBV PRD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "91d55f37-2a2f-4a7b-9974-82d26d80d1fc",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "data_inicial"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -100
+      ],
+      "id": "2bae868a-c2fd-4cda-9b0f-7a1f19e6d5fd",
+      "name": "Webhook",
+      "webhookId": "91d55f37-2a2f-4a7b-9974-82d26d80d1fc",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -100
+      ],
+      "id": "14cddb4d-a562-44d9-8af5-3e78cf55650c",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-18T14:01:29.434Z",
+  "versionId": "4ea355b4-a769-4c38-9f36-6798f0653d56"
+}

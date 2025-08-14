@@ -1,0 +1,712 @@
+{
+  "active": true,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de Funcionário",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de Funcionário",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Globais",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RH",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Funcionários",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente Globais": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Globais": {
+      "main": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_globais": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de Funcionário",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_cp": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Funcionários": {
+      "main": [
+        [
+          {
+            "node": "Agente de Funcionário",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RH": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de Funcionário": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-08-13T20:53:25.302Z",
+  "id": "Tyt33pcSUm0tOsBU",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[IA.1] SimpleIT - RH",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Olá, sou o Assistente Virtual de RH!",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -800,
+        -180
+      ],
+      "id": "ad513e18-0b40-4be3-bf24-456de3c89211",
+      "name": "When chat message received",
+      "webhookId": "82ebd54c-d0ba-4e43-b159-7797c20bc9f4"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.chatInput }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Globais",
+              "description": "Quando o usuário quer informações sobre o sistema TOTVS RM.\n\nuse o exemplo abaixo para entender o que o usuário precisa\nExemplo de Dados\n[\n  {\n    \"VERSAOBASE\": \"12.1.2410.0\",\n    \"CONTROLE\": -28710,\n    \"ERROSATUALIZ\": 0,\n    \"BASE\": \"MS SQL\",\n    \"UNIFIEDLOGON\": 0,\n    \"PORTOMSG\": 9020,\n    \"UPCASELOGIN\": \"F\",\n    \"USAULTIMACOLIGADA\": \"T\",\n    \"NUMTENTLOGIN\": 0,\n    \"TEMPOUSRBLOQ\": 0,\n    \"SEGURANCAGERADOR\": \"T\",\n    \"MAXACESSOS\": 30,\n    \"PAIS\": \"BRA\",\n    \"NUMDIASLOGREL\": 7,\n    \"MAXACESSOSNET\": 50,\n    \"URLPORTAL\": \"\",\n    \"SIMBOLOMOEDA\": \"R$\",\n    \"DIASRELAGENDADO\": 0,\n    \"USACODUSUARIOREDE\": 0,\n    \"LDAPLOGON\": 0,\n    \"LDAPINTEG\": 0,\n    \"USASEGCONSSQL\": 1,\n    \"USABLOQSEGCONSSQL\": 1,\n    \"GRAVALOGEMAIL\": 1,\n    \"LICENCACORPORATIVA\": 0,\n    \"NUMLICENCASFULL\": 0,\n    \"USALICENCATOTVS\": 2,\n    \"CANUSESTARTPSW\": 0,\n    \"LICENCESERVERADDRESS\": \"10.1.21.49\",\n    \"LICENCESERVERPORT\": 5555,\n    \"CONTROLELIC\": -16789,\n    \"DEFAULTSENDERMAIL\": 1,\n    \"RESOURCEWS\": \"http://share.totvs.com.br/RMSMarketPlaceWS/RMSMarketPlaceWS.asmx\",\n    \"RESOURCEWSENABLED\": 1,\n    \"USASEGURANCAFILIAL\": \"F\",\n    \"USASEGURANCACCUSTO\": \"F\",\n    \"USARUSUARIOCOMOREMETENTEEMAIL\": 0,\n    \"IDCUSTOMLOGO\": 934,\n    \"TYPECUSTOMLOGO\": 1,\n    \"RECMODIFIEDBY\": \"totvs-upg\",\n    \"RECMODIFIEDON\": \"2025-02-07T17:04:55+00:00\",\n    \"QTDSOENVILOGUSO\": -1,\n    \"DATASOLENVILOGUSO\": \"2018-08-01T13:31:46.267+00:00\",\n    \"URLUSERANALYSIS\": \"http://conhecimento.rm.com.br:8080/apserver/\",\n    \"HABILITARANALISEPREDITIVA\": 1,\n    \"ENVIRONMENT\": 2,\n    \"USASEGCODCOLIGADACONSSQL\": 0,\n    \"LDAPUSENAMEWITHCN\": 0,\n    \"TENANTID\": \"d2af0bc4-1041-4ab8-a326-f8dba7c7c316\",\n    \"LDAPSENABLED\": 0,\n    \"ALLOWSECUREENROLLEDDEVICES\": 0\n  }\n]\n\nVersao do TOTVS RM, License Server, Base de Dados"
+            },
+            {
+              "category": "RH",
+              "description": "Quando o usuário quer informações de Processos do RH"
+            },
+            {
+              "category": "=Funcionários",
+              "description": "Quando o usuário quer fazer uma consulta de dados de funcionários.\nSó quando falar Funcionário"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -180
+      ],
+      "id": "6ca8e85a-c6a9-4cef-88ae-0dc3d2aa0ced",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        60
+      ],
+      "id": "c20d593a-3266-4ee2-bb7c-925fdfbc43fc",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        960,
+        160
+      ],
+      "id": "f892eafa-861d-4e63-801e-c2ca94a7b1e3",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1080,
+        180
+      ],
+      "id": "2c8c4842-fc4d-4fce-b48f-a0b7108d93e7",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        380,
+        180
+      ],
+      "id": "727722e5-86bb-4e65-aaeb-4c350cea82c5",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        200
+      ],
+      "id": "568a3e13-cfa3-4a47-a0b5-8a8cac5bd256",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        680,
+        200
+      ],
+      "id": "b4166806-8701-4472-9ae3-bce4c40190f5",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=Você é um agente que faz as boas vindas para a SimpleIT - Soluções em tecnologia.\n\nVocê só pergunta o que o usuário deseja, seja educado.\nSe for algo que não tem nas opções fale que está em fase Beta e que está em desenvolvimento.\n\nNão falar nada que não seja referente a RH.\nExplicar que é um assistente de RH."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        420,
+        20
+      ],
+      "id": "2ffcf5e2-2322-4faf-8e1b-4709cf25b087",
+      "name": "Agente de Boa Vindas"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\nChama a Toll **call_globais** e retorne as informações"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        400,
+        -620
+      ],
+      "id": "3b57e32f-675f-4d5b-902b-acbdce597eb4",
+      "name": "Agente Globais"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -460
+      ],
+      "id": "acbb8765-2c13-442a-978a-d2e5e125efe6",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Text Classifier').item.json.sessionId }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        -440
+      ],
+      "id": "8dacb624-9456-42eb-9123-63b62decfe34",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0ce1604f-9fec-4a39-a8ea-a0d249e93978",
+              "name": "instrucao",
+              "value": "Pergunte o que o usuário precisa de informações sobre o TOTVS RM (RM).\nRetorne as informação depois de consultar a tool **call_globais**",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        -440
+      ],
+      "id": "6b8dcde7-6c82-4572-baae-d806fdb908c1",
+      "name": "Globais"
+    },
+    {
+      "parameters": {
+        "name": "busca_globais",
+        "description": "Retorna os dados dos parametros Gloabis do TOTVS RM:\n\nInformações disponíveis:\n\n[\n  {\n    \"VERSAOBASE\": \"\",\n    \"CONTROLE\": -28710,\n    \"ERROSATUALIZ\": 0,\n    \"BASE\": \"MS SQL\",\n    \"UNIFIEDLOGON\": 0,\n    \"PORTOMSG\": 9020,\n    \"UPCASELOGIN\": \"F\",\n    \"USAULTIMACOLIGADA\": \"T\",\n    \"NUMTENTLOGIN\": 0,\n    \"TEMPOUSRBLOQ\": 0,\n    \"SEGURANCAGERADOR\": \"T\",\n    \"MAXACESSOS\": 30,\n    \"PAIS\": \"BRA\",\n    \"NUMDIASLOGREL\": 7,\n    \"MAXACESSOSNET\": 50,\n    \"URLPORTAL\": \"\",\n    \"SIMBOLOMOEDA\": \"R$\",\n    \"DIASRELAGENDADO\": 0,\n    \"USACODUSUARIOREDE\": 0,\n    \"LDAPLOGON\": 0,\n    \"LDAPINTEG\": 0,\n    \"USASEGCONSSQL\": 1,\n    \"USABLOQSEGCONSSQL\": 1,\n    \"GRAVALOGEMAIL\": 1,\n    \"LICENCACORPORATIVA\": 0,\n    \"NUMLICENCASFULL\": 0,\n    \"USALICENCATOTVS\": 2,\n    \"CANUSESTARTPSW\": 0,\n    \"LICENCESERVERADDRESS\": \"10.1.21.49\",\n    \"LICENCESERVERPORT\": 5555,\n    \"CONTROLELIC\": -16789,\n    \"DEFAULTSENDERMAIL\": 1,\n    \"RESOURCEWS\": \"http://share.totvs.com.br/RMSMarketPlaceWS/RMSMarketPlaceWS.asmx\",\n    \"RESOURCEWSENABLED\": 1,\n    \"USASEGURANCAFILIAL\": \"F\",\n    \"USASEGURANCACCUSTO\": \"F\",\n    \"USARUSUARIOCOMOREMETENTEEMAIL\": 0,\n    \"IDCUSTOMLOGO\": 934,\n    \"TYPECUSTOMLOGO\": 1,\n    \"RECMODIFIEDBY\": \"totvs-upg\",\n    \"RECMODIFIEDON\": \"2025-02-07T17:04:55+00:00\",\n    \"QTDSOENVILOGUSO\": -1,\n    \"DATASOLENVILOGUSO\": \"2018-08-01T13:31:46.267+00:00\",\n    \"URLUSERANALYSIS\": \"http://conhecimento.rm.com.br:8080/apserver/\",\n    \"HABILITARANALISEPREDITIVA\": 1,\n    \"ENVIRONMENT\": 2,\n    \"USASEGCODCOLIGADACONSSQL\": 0,\n    \"LDAPUSENAMEWITHCN\": 0,\n    \"TENANTID\": \"d2af0bc4-1041-4ab8-a326-f8dba7c7c316\",\n    \"LDAPSENABLED\": 0,\n    \"ALLOWSECUREENROLLEDDEVICES\": 0\n  }\n]\n\nRetornar somente a informações solicitada",
+        "workflowId": {
+          "__rl": true,
+          "value": "07K8GCAygSp5VCGY",
+          "mode": "list",
+          "cachedResultName": "[IA.1] SimpleIT - Busca Globais"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        -460
+      ],
+      "id": "b3081404-3b1b-46f5-abbc-fd06ebb9b921",
+      "name": "call_globais"
+    },
+    {
+      "parameters": {
+        "name": "busca_cep",
+        "description": "Retorna as informações de um CEP informado pelo usuário. Formatado com o cabeçalho em negrito e cada campo e uma linha.\n\nFormatar a resposta",
+        "workflowId": {
+          "__rl": true,
+          "value": "uVf1xOOlIhhBO1dp",
+          "mode": "list",
+          "cachedResultName": "SimpleIT - Busca CEP"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        180
+      ],
+      "id": "b13ade93-14b8-4e6a-8fbd-cc3f7d4a27e5",
+      "name": "call_cep"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\nHoje é {{ $now }}\n\nFormatar as datas em \"DD/MM/YYYY\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        840,
+        -380
+      ],
+      "id": "41633586-20ab-4691-af9a-f195e9ef4d05",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -220
+      ],
+      "id": "2283a794-b6e6-4e5c-86c2-957b8b60e1d7",
+      "name": "Google Gemini Chat Model4",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        920,
+        -200
+      ],
+      "id": "dff60de3-97de-457c-b124-64989a7d0310",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "name": "call_cp",
+        "description": "Retorna informações de lançamentos a pagar de acordo com a solicitação do usuário.",
+        "workflowId": {
+          "__rl": true,
+          "value": "oNEJfS9Nm7BIAp12",
+          "mode": "list",
+          "cachedResultName": "[IA.1] SimpleIT - Busca CP"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        -220
+      ],
+      "id": "52d84cec-ba1d-4d18-a363-548d89b6fd5f",
+      "name": "call_cp"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/6f89da0b-a499-4bfc-900e-852a40e43347",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        -160
+      ],
+      "id": "678a7693-2d3b-4ed1-9034-3cda9f2c0090",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ebf2781b-2706-496f-ace3-3b7c7102e5b1",
+              "name": "instrucao",
+              "value": "=Pergunte sobre qual Funcionário o usuário quer obter informações",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -160
+      ],
+      "id": "cb00c269-4a8e-4e94-bcbf-d8d79f569e2b",
+      "name": "Funcionários"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3cc5207-1d72-43ad-9277-3abb09b93981",
+              "name": "instrucao",
+              "value": "Pergunte qual o informação sobre o RH que o usuário quer consultar.\nNão retornar nada sobre outras informações.\nAvisar que só pode falar sobre RH.\nQue as informações são sigilosas.\n\n\nProcessos que podemos auxiliar no momento:\n- Consulta de Salários\n- Consulta de Faltas\n\nSe for solicitado algo diferente desses Processos falar que estamos em desenvolvimento e em breve teremos mais processos.",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -300
+      ],
+      "id": "196241d6-0cec-422a-93c6-77f624c940bd",
+      "name": "RH"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Pergunta nome e CPF",
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\n\nPerguntar nome e CPF"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1020,
+        0
+      ],
+      "id": "69a494c4-7b10-4284-b06e-9bb896d06702",
+      "name": "Agente de Funcionário"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-14T11:56:42.110Z",
+  "versionId": "1f20f30c-0aed-445f-a6a2-8754086f92f7"
+}

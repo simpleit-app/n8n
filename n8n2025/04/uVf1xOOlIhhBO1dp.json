@@ -1,0 +1,66 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "http_consulta_cep",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http_consulta_cep": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-04-08T16:29:32.146Z",
+  "id": "uVf1xOOlIhhBO1dp",
+  "meta": null,
+  "name": "[IA.1] SimpleIT - Busca CEP",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -140,
+        -60
+      ],
+      "id": "8bc502e9-4f22-4808-a2d2-027ffdfd2069",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "=https://viacep.com.br/ws/{{$json.query}}/json/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        40,
+        -60
+      ],
+      "id": "53a305de-a6dc-4893-b453-7c44daa563e9",
+      "name": "http_consulta_cep"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-09T16:53:06.092Z",
+  "versionId": "4990ccbb-4689-4e64-bbda-9d1c519603d6"
+}

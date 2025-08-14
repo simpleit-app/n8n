@@ -1,0 +1,168 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call n8n Workflow Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-07T11:44:44.451Z",
+  "id": "CmVE3IaCKzoCUFa9",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Fluxo_Inicial_CEP",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1020,
+        -220
+      ],
+      "id": "4e1a0606-0fb3-4b52-954a-946b39b9679d",
+      "name": "When chat message received",
+      "webhookId": "c1ae7e67-0cbe-4c8b-881c-4d5c5ea95c32"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -600,
+        -220
+      ],
+      "id": "a2c7b0cf-9bf8-4407-b062-83b2bdd30231",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -40
+      ],
+      "id": "67097933-9763-47fc-b339-e018debbe872",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -500,
+        -40
+      ],
+      "id": "2f52ce8b-7476-47f4-829d-02b8f61ab00f",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "name": "Execute_Parte1",
+        "description": "Chame essa tool para buscar os dados do CEP",
+        "workflowId": {
+          "__rl": true,
+          "value": "gsyi7CxrgVstbFJw",
+          "mode": "id"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "CEP": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('CEP', `CEP que o usuário informou, vc deve solicitar`, 'string') }}"
+          },
+          "matchingColumns": [
+            "CEP"
+          ],
+          "schema": [
+            {
+              "id": "CEP",
+              "displayName": "CEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        -320,
+        -40
+      ],
+      "id": "6007a8b0-7fad-4ae6-a15f-4c87452c92c8",
+      "name": "Call n8n Workflow Tool"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-18T14:01:21.722Z",
+  "versionId": "7f893699-f2ce-48b1-8329-fe3decf2145f"
+}

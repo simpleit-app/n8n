@@ -1,0 +1,709 @@
+{
+  "active": true,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Globais",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Financeiro - CP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "CEP",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CEP": {
+      "main": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de Boa Vindas",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de CEP": {
+      "main": [
+        []
+      ]
+    },
+    "Agente Globais": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Globais": {
+      "main": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_globais": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Globais",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Financeiro - CP": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory3": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "call_cp": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-08T13:39:36.094Z",
+  "id": "oIXUlvmZFmpwjgeh",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[IA.1] SimpleIT - AI",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -800,
+        -180
+      ],
+      "id": "65076e1c-c6c5-4003-8ded-b8456465dc1d",
+      "name": "When chat message received",
+      "webhookId": "4dd76e51-688a-41f1-8e46-969a64aa7e55"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.chatInput }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Globais",
+              "description": "Quando o usuário quer informações sobre o sistema TOTVS RM.\n\nuse o exemplo abaixo para entender o que o usuário precisa\nExemplo de Dados\n[\n  {\n    \"VERSAOBASE\": \"12.1.2410.0\",\n    \"CONTROLE\": -28710,\n    \"ERROSATUALIZ\": 0,\n    \"BASE\": \"MS SQL\",\n    \"UNIFIEDLOGON\": 0,\n    \"PORTOMSG\": 9020,\n    \"UPCASELOGIN\": \"F\",\n    \"USAULTIMACOLIGADA\": \"T\",\n    \"NUMTENTLOGIN\": 0,\n    \"TEMPOUSRBLOQ\": 0,\n    \"SEGURANCAGERADOR\": \"T\",\n    \"MAXACESSOS\": 30,\n    \"PAIS\": \"BRA\",\n    \"NUMDIASLOGREL\": 7,\n    \"MAXACESSOSNET\": 50,\n    \"URLPORTAL\": \"\",\n    \"SIMBOLOMOEDA\": \"R$\",\n    \"DIASRELAGENDADO\": 0,\n    \"USACODUSUARIOREDE\": 0,\n    \"LDAPLOGON\": 0,\n    \"LDAPINTEG\": 0,\n    \"USASEGCONSSQL\": 1,\n    \"USABLOQSEGCONSSQL\": 1,\n    \"GRAVALOGEMAIL\": 1,\n    \"LICENCACORPORATIVA\": 0,\n    \"NUMLICENCASFULL\": 0,\n    \"USALICENCATOTVS\": 2,\n    \"CANUSESTARTPSW\": 0,\n    \"LICENCESERVERADDRESS\": \"10.1.21.49\",\n    \"LICENCESERVERPORT\": 5555,\n    \"CONTROLELIC\": -16789,\n    \"DEFAULTSENDERMAIL\": 1,\n    \"RESOURCEWS\": \"http://share.totvs.com.br/RMSMarketPlaceWS/RMSMarketPlaceWS.asmx\",\n    \"RESOURCEWSENABLED\": 1,\n    \"USASEGURANCAFILIAL\": \"F\",\n    \"USASEGURANCACCUSTO\": \"F\",\n    \"USARUSUARIOCOMOREMETENTEEMAIL\": 0,\n    \"IDCUSTOMLOGO\": 934,\n    \"TYPECUSTOMLOGO\": 1,\n    \"RECMODIFIEDBY\": \"totvs-upg\",\n    \"RECMODIFIEDON\": \"2025-02-07T17:04:55+00:00\",\n    \"QTDSOENVILOGUSO\": -1,\n    \"DATASOLENVILOGUSO\": \"2018-08-01T13:31:46.267+00:00\",\n    \"URLUSERANALYSIS\": \"http://conhecimento.rm.com.br:8080/apserver/\",\n    \"HABILITARANALISEPREDITIVA\": 1,\n    \"ENVIRONMENT\": 2,\n    \"USASEGCODCOLIGADACONSSQL\": 0,\n    \"LDAPUSENAMEWITHCN\": 0,\n    \"TENANTID\": \"d2af0bc4-1041-4ab8-a326-f8dba7c7c316\",\n    \"LDAPSENABLED\": 0,\n    \"ALLOWSECUREENROLLEDDEVICES\": 0\n  }\n]\n\nVersao do TOTVS RM, License Server, Base de Dados"
+            },
+            {
+              "category": "Financeiro - CP",
+              "description": "Quando o usuário quer informações de Lançamentos a Pagar., Contas a Pagar, Vencimentos de Títulos, Resumo de Pagamentoss"
+            },
+            {
+              "category": "CEP",
+              "description": "Quando o usuário quer fazer uma consulta de CEP."
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        -180
+      ],
+      "id": "ff99bc34-9ea5-49e5-a103-cff915578c7c",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        40
+      ],
+      "id": "57783aa5-585a-4a0c-bdeb-5221cebce0e2",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        960,
+        160
+      ],
+      "id": "fe93547e-bb50-4234-9525-20d118ae3f7d",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1080,
+        180
+      ],
+      "id": "4388dce4-74f5-4eb6-a93c-1469d598df1a",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ebf2781b-2706-496f-ace3-3b7c7102e5b1",
+              "name": "instrucao",
+              "value": "Pergunte qual o CEP que o usuário quer consultar, em seguida retorne as informações sobre o CEP formatado com o cabeçalho em negrito um campo em cada linha.\nUse esse exemplo para retornar os dados:\n\n0:**CEP:** 18272-541\n1:**Logradouro:** Rua Maria Romildes da Costa\n2:**Complemento:** \n3:**Unidade:** \n4:**Bairro:** Residencial Bosques dos Ipês\n5:**Localidade:** Tatuí\n6:**UF:** SP\n7:**Estado:** São Paulo\n8:**Região:** Sudeste\n9:**IBGE:** 3554003\n10:**GIA:** 6877\n11:**DDD:** 15\n12:**SIAFI:** 7181\n",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -160
+      ],
+      "id": "9cf7ee08-74ac-47b4-9ebd-6a3b00e6d504",
+      "name": "CEP"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        380,
+        180
+      ],
+      "id": "e8564b02-cb14-4653-8752-2d1ea526cba9",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        200
+      ],
+      "id": "61cc6a29-6654-41fd-8578-7b03a1dcac66",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        680,
+        200
+      ],
+      "id": "e5d6cd6f-8171-4c34-a0e4-18ffab13be16",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Você é um agente que faz as boas vindas para a SimpleIT - Soluções em tecnologia.\n\nVocê só pergunta o que o usuário deseja, seja educado.\nSe for algo que não tem nas opções fale que está em fase Beta e que está em desenvolvimento.\n\nNão falar nada que não seja refeente a Contas a Pagar, Consulta de CEP"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        420,
+        20
+      ],
+      "id": "1d717e14-d791-415f-a6d6-b929bbfc1725",
+      "name": "Agente de Boa Vindas"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\n\nFormatar o Json e mandar para o usuário com um aspecto profissional\nUma informação em cada linha sem **\n\nSe o usuário digitar sem a máscara XXXXX-XXX pedir para digitar novamente\n\nO retorno vem nesse formato:\n0:**CEP:** 18272-541 1:**Logradouro:** Rua Maria Romildes da Costa 2:**Complemento:** 3:**Unidade:** 4:**Bairro:** Residencial Bosques dos Ipês 5:**Localidade:** Tatuí 6:**UF:** SP 7:**Estado:** São Paulo 8:**Região:** Sudeste 9:**IBGE:** 3554003 10:**GIA:** 6877 11:**DDD:** 15 12:**SIAFI:** 7181\n\nMandar para o usuário assim:\n\nCEP:18272-541 1 (Pular linha)\n\nLogradouro:Rua Maria Romildes da Costa (Pular linha)\n\nBairro:Residencial Bosques dos Ipês (Pular linha)\n\nLocalidade:Tatuí (Pular linha)\n\nUF:SP (Pular linha)\n\nEstado:São Paulo (Pular linha)\n\nRegião:Sudeste (Pular linha)\n\nIBGE:3554003 (Pular linha)\n\nDDD:15 (Pular linha)\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1020,
+        0
+      ],
+      "id": "63a56cfd-bdb9-4410-b035-349936b1aeba",
+      "name": "Agente de CEP"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\nChama a Toll **call_globais** e retorne as informações"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        400,
+        -620
+      ],
+      "id": "81766e8d-4950-4c14-831d-682a048766e3",
+      "name": "Agente Globais"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -460
+      ],
+      "id": "c006db75-5d86-4497-a988-bce88a48b2c4",
+      "name": "Google Gemini Chat Model3",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Text Classifier').item.json.sessionId }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        480,
+        -440
+      ],
+      "id": "22ffaba4-be59-4a7b-a4d7-c7ab3b760756",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0ce1604f-9fec-4a39-a8ea-a0d249e93978",
+              "name": "instrucao",
+              "value": "Pergunte o que o usuário precisa de informações sobre o TOTVS RM (RM).\nRetorne as informação depois de consultar a tool **call_globais**",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        120,
+        -440
+      ],
+      "id": "d215c1c9-a783-4092-a477-23d254910ae2",
+      "name": "Globais"
+    },
+    {
+      "parameters": {
+        "name": "busca_globais",
+        "description": "Retorna os dados dos parametros Gloabis do TOTVS RM:\n\nInformações disponíveis:\n\n[\n  {\n    \"VERSAOBASE\": \"\",\n    \"CONTROLE\": -28710,\n    \"ERROSATUALIZ\": 0,\n    \"BASE\": \"MS SQL\",\n    \"UNIFIEDLOGON\": 0,\n    \"PORTOMSG\": 9020,\n    \"UPCASELOGIN\": \"F\",\n    \"USAULTIMACOLIGADA\": \"T\",\n    \"NUMTENTLOGIN\": 0,\n    \"TEMPOUSRBLOQ\": 0,\n    \"SEGURANCAGERADOR\": \"T\",\n    \"MAXACESSOS\": 30,\n    \"PAIS\": \"BRA\",\n    \"NUMDIASLOGREL\": 7,\n    \"MAXACESSOSNET\": 50,\n    \"URLPORTAL\": \"\",\n    \"SIMBOLOMOEDA\": \"R$\",\n    \"DIASRELAGENDADO\": 0,\n    \"USACODUSUARIOREDE\": 0,\n    \"LDAPLOGON\": 0,\n    \"LDAPINTEG\": 0,\n    \"USASEGCONSSQL\": 1,\n    \"USABLOQSEGCONSSQL\": 1,\n    \"GRAVALOGEMAIL\": 1,\n    \"LICENCACORPORATIVA\": 0,\n    \"NUMLICENCASFULL\": 0,\n    \"USALICENCATOTVS\": 2,\n    \"CANUSESTARTPSW\": 0,\n    \"LICENCESERVERADDRESS\": \"10.1.21.49\",\n    \"LICENCESERVERPORT\": 5555,\n    \"CONTROLELIC\": -16789,\n    \"DEFAULTSENDERMAIL\": 1,\n    \"RESOURCEWS\": \"http://share.totvs.com.br/RMSMarketPlaceWS/RMSMarketPlaceWS.asmx\",\n    \"RESOURCEWSENABLED\": 1,\n    \"USASEGURANCAFILIAL\": \"F\",\n    \"USASEGURANCACCUSTO\": \"F\",\n    \"USARUSUARIOCOMOREMETENTEEMAIL\": 0,\n    \"IDCUSTOMLOGO\": 934,\n    \"TYPECUSTOMLOGO\": 1,\n    \"RECMODIFIEDBY\": \"totvs-upg\",\n    \"RECMODIFIEDON\": \"2025-02-07T17:04:55+00:00\",\n    \"QTDSOENVILOGUSO\": -1,\n    \"DATASOLENVILOGUSO\": \"2018-08-01T13:31:46.267+00:00\",\n    \"URLUSERANALYSIS\": \"http://conhecimento.rm.com.br:8080/apserver/\",\n    \"HABILITARANALISEPREDITIVA\": 1,\n    \"ENVIRONMENT\": 2,\n    \"USASEGCODCOLIGADACONSSQL\": 0,\n    \"LDAPUSENAMEWITHCN\": 0,\n    \"TENANTID\": \"d2af0bc4-1041-4ab8-a326-f8dba7c7c316\",\n    \"LDAPSENABLED\": 0,\n    \"ALLOWSECUREENROLLEDDEVICES\": 0\n  }\n]\n\nRetornar somente a informações solicitada",
+        "workflowId": {
+          "__rl": true,
+          "value": "07K8GCAygSp5VCGY",
+          "mode": "list",
+          "cachedResultName": "[IA.1] SimpleIT - Busca Globais"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        -460
+      ],
+      "id": "b572b1c6-f5d2-4aee-91d4-f066b9b80d8a",
+      "name": "call_globais"
+    },
+    {
+      "parameters": {
+        "name": "busca_cep",
+        "description": "Retorna as informações de um CEP informado pelo usuário. Formatado com o cabeçalho em negrito e cada campo e uma linha.\n\nFormatar a resposta",
+        "workflowId": {
+          "__rl": true,
+          "value": "uVf1xOOlIhhBO1dp",
+          "mode": "list",
+          "cachedResultName": "SimpleIT - Busca CEP"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        180
+      ],
+      "id": "804843d4-816e-48ea-836b-a7d2e232161a",
+      "name": "call_cep"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "={{ $json.instrucao }}\nHoje é {{ $now }}\n\nFormatar as datas em \"DD/MM/YYYY\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        840,
+        -380
+      ],
+      "id": "2c08ed32-0015-4a0f-abcf-32d14a59a301",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a3cc5207-1d72-43ad-9277-3abb09b93981",
+              "name": "instrucao",
+              "value": "Pergunte qual o informação sobre o Contas a Pagar que o usuário quer consultar, em seguida retorne as informações de qualquer periodo tiver informações.\nUse a DATAVENCIMENTo para os vencimentos e VALORORIGINAL para o valor\n",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        560,
+        -300
+      ],
+      "id": "59141612-9051-4dcb-8c55-bbd129805327",
+      "name": "Financeiro - CP"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -220
+      ],
+      "id": "a9b2cc45-07cc-4d66-b769-053a987adf88",
+      "name": "Google Gemini Chat Model4",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        920,
+        -200
+      ],
+      "id": "58ca37bc-b44a-4535-a8b2-13fd38507f6b",
+      "name": "Simple Memory3"
+    },
+    {
+      "parameters": {
+        "name": "call_cp",
+        "description": "Retorna informações de lançamentos a pagar de acordo com a solicitação do usuário.",
+        "workflowId": {
+          "__rl": true,
+          "value": "oNEJfS9Nm7BIAp12",
+          "mode": "list",
+          "cachedResultName": "[IA.1] SimpleIT - Busca CP"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2.1,
+      "position": [
+        1280,
+        -220
+      ],
+      "id": "889ca36f-eda5-446d-8fe1-5338e0be5cab",
+      "name": "call_cp"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/6f89da0b-a499-4bfc-900e-852a40e43347",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        -160
+      ],
+      "id": "b81c8519-1105-49f0-96d6-9f4bb68ae5de",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-23T20:07:31.538Z",
+  "versionId": "9d319987-969c-4c96-a6f2-72fbbeb7b980"
+}

@@ -1,0 +1,108 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-16T15:33:04.350Z",
+  "id": "cyTM58eH7tmsfcYz",
+  "meta": null,
+  "name": "SimpleIT - Incluir Zona CloudFlare",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f3f23c83-470a-4897-b4af-865458d9be7f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -40
+      ],
+      "id": "f51993ba-e48f-4e53-a387-af3dac551a29",
+      "name": "Webhook",
+      "webhookId": "f3f23c83-470a-4897-b4af-865458d9be7f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.cloudflare.com/client/v4/zones/25c3e65f57b3cca76586e27af3295f54/dns_records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer DWIERfX9t_wKpeNQ-CX-d0gxblBRWlGswnTed2Xi"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"A\",\n  \"name\": \"{{ $json.query.name }}.simpleit.app.br\",\n  \"content\": \"185.158.133.1\",\n  \"ttl\": 1,\n  \"proxied\": false\n}\n",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -60,
+        -40
+      ],
+      "id": "341cba3e-a749-4b33-9d8a-287520e46ca0",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        -40
+      ],
+      "id": "2972c51a-1cc7-4b81-bfb7-ae2476d7cf1b",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-16T15:37:16.569Z",
+  "versionId": "49e744ee-d6bd-4a6c-86a5-944c9fbf9870"
+}

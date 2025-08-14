@@ -1,0 +1,194 @@
+{
+  "active": false,
+  "connections": {
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        []
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-29T19:47:12.053Z",
+  "id": "eRmKjBb7GYKGbIzc",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Alelo 3 - Teste",
+  "nodes": [
+    {
+      "parameters": {
+        "binaryPropertyName": "=data",
+        "options": {
+          "includeEmptyCells": true,
+          "sheetName": "Resumo"
+        }
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        -560,
+        -440
+      ],
+      "typeVersion": 1,
+      "id": "4f7b3f13-fa21-44a7-b7c8-af0aa05c64ca",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "639bf92b-3a46-4211-af82-c12c2697d704",
+              "name": "__EMPTY_2",
+              "value": "={{ $json.__EMPTY_2 }}",
+              "type": "string"
+            },
+            {
+              "id": "b5453a22-fd53-46e5-ad40-776e5842cffe",
+              "name": "__EMPTY_7",
+              "value": "={{ $json.__EMPTY_7 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -320,
+        -440
+      ],
+      "id": "278f86bd-c96d-467f-9171-4935335c2a17",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.__EMPTY_2 }}",
+                    "rightValue": "DESCONTO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9042e636-e3a4-45b4-b17a-dd58d794eb87"
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -80,
+        -440
+      ],
+      "id": "6f363f94-3659-4c99-a933-4f1a3f29473c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c9a59c90-d642-468a-b7cd-af7d43c61989",
+        "options": {
+          "binaryPropertyName": "base64",
+          "rawBody": true
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -980,
+        -440
+      ],
+      "id": "494a583c-26fc-44fb-89a3-c893760f4585",
+      "name": "Webhook",
+      "webhookId": "c9a59c90-d642-468a-b7cd-af7d43c61989"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "query.base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        -760,
+        -440
+      ],
+      "id": "0e809094-84f3-482c-8cd4-97c5cfb5c46c",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-18T14:00:05.331Z",
+  "versionId": "52917a7c-55fc-448d-8f99-995802b8a4e8"
+}

@@ -1,0 +1,104 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-07T17:20:39.390Z",
+  "id": "51KmP2OE9iyoNj86",
+  "meta": null,
+  "name": "SimpleNFe - Busca Chave de Acesso",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7afbb798-ab06-42ec-899a-6668faf1d960",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "chave"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -20
+      ],
+      "id": "41425a82-b566-43e0-b352-6863fea46829",
+      "name": "Webhook",
+      "webhookId": "7afbb798-ab06-42ec-899a-6668faf1d960"
+    },
+    {
+      "parameters": {
+        "url": "=https://legiaoda142256.rm.cloudtotvs.com.br:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEDFE.000002/1/T?parameters=chave={{ $json.query.chave }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -120,
+        -20
+      ],
+      "id": "52b0545f-fe3c-48a6-863f-f640697add0e",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "w72NhNtkaDz55kj7",
+          "name": "LBV VLD"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        -20
+      ],
+      "id": "27a93956-11c4-4cc6-ad0a-f7ce14a8647d",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "notesInFlow": false
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-07T17:21:23.845Z",
+  "versionId": "933c53e7-4653-4e3e-a47a-55a00c0b6cc3"
+}

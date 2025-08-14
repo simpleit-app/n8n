@@ -1,0 +1,103 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-24T17:35:15.390Z",
+  "id": "ds23WlHqrjHnGAJq",
+  "meta": null,
+  "name": "SimpleIT - Fluxo de Caixa",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/MEUERP.000000005/1/F",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        -100
+      ],
+      "id": "f952b550-53d1-405d-abd9-91a3b0cfeeba",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "kJrQ1JCU6O9AD8xm",
+          "name": "Unnamed credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "48ae2d3f-8939-480c-b0d5-6bc0018d3c5a",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "endpoint"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -100
+      ],
+      "id": "61c387bf-26e0-419c-b3b8-b5b0e4a8b858",
+      "name": "Webhook",
+      "webhookId": "48ae2d3f-8939-480c-b0d5-6bc0018d3c5a",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        -100
+      ],
+      "id": "3e2b78fc-abcc-4f17-ac1a-df8d83017c37",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-24T17:35:37.221Z",
+  "versionId": "aa3d5e93-6b86-4299-8512-ee1bf55a880a"
+}

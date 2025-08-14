@@ -1,0 +1,102 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-10T20:14:57.481Z",
+  "id": "KErv5j4rPsPTwJ3f",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Teste Post - Btree",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "btree_teste",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -40
+      ],
+      "id": "c4770896-a1bc-4a59-a524-08ae0f9dfd1e",
+      "name": "Webhook",
+      "webhookId": "0bd33866-9956-42ac-8d7b-8b52bc4f98b5"
+    },
+    {
+      "parameters": {
+        "url": "https://institutode133913.rm.cloudtotvs.com.br:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/integracao.mosia/0/P",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -180,
+        -40
+      ],
+      "id": "2c2c85cc-7d93-4d20-8e36-82213a37cf88",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "l6UZJQZvFW840Gjk",
+          "name": "Btree"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        40,
+        -40
+      ],
+      "id": "654383a8-5955-466a-b855-7f32f4af79a3",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-06-10T20:27:33.770Z",
+  "versionId": "6b7024c7-f68e-4e6d-9257-f834c69ae821"
+}

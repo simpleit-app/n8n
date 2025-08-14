@@ -1,0 +1,98 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-28T21:00:16.690Z",
+  "id": "uzJDih1qQqAq7io6",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Planilha",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -420,
+        -140
+      ],
+      "id": "4aeea03d-6b37-4336-ae98-f530b3d60517",
+      "name": "On form submission",
+      "webhookId": "2fdf5cb5-8f71-4485-81b6-d4572166435f"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -140
+      ],
+      "id": "41035f5e-c950-4311-b228-e4d2b55c2d0d",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pegue o valor base64\nconst base64 = $input.item.json.data; // Supondo que o base64 esteja no campo \"base64_value\"\n\n// Decodifique o base64 para texto\nconst decoded = Buffer.from(base64, 'base64').toString('utf-8');\n\n// Exemplo de como você pode dividir o texto em partes e criar um JSON\nconst parts = decoded.split(';');\nconst resultJson = {\n  name: parts[0],\n  sobrenome: parts[1],\n  idade: parts[2],\n  sexo: parts[3].trim() // Usando .trim() para remover espaços extras e \\r\\n\n};\n\n// Retorne o resultado como JSON\nreturn [\n  {\n    json: resultJson\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        20,
+        -140
+      ],
+      "id": "4293d7ea-c32e-4ea7-8354-7b1e9fe5377d",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-18T14:00:25.067Z",
+  "versionId": "45f8cd78-c8e8-43a0-9ac9-2b31eb7a5468"
+}

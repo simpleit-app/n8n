@@ -1,0 +1,505 @@
+{
+  "active": false,
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agente CEP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agente CEP",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agente CEP",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente CEP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agente_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agente CNPJ",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agente CNPJ",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta_cnpj": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agente CNPJ",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agente_cnpj": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agente CEP": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agente CNPJ": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "AI Agente CNPJ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-07T20:44:12.874Z",
+  "id": "E4XfQ9uB8wHBa7NJ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1400,
+        -160
+      ],
+      "id": "655eec7c-cbb7-4c7f-b2ca-a32296d3ab30",
+      "name": "When chat message received",
+      "webhookId": "11f7f2e1-7c27-4410-bbee-418c41f13dda"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Vc é um assistente que fala em Português\nSobre CNPJ vai para a tool **agente_cnpj**\nSobre CEP vai para a tool **agente_cep**"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1180,
+        -160
+      ],
+      "id": "4d723eda-c7b4-4989-ba99-fe849a6717a7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1260,
+        20
+      ],
+      "id": "4976df69-1ca8-40e7-9b55-2cac9c63b662",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1100,
+        20
+      ],
+      "id": "21885ab6-cbdf-46fd-bc03-2c00eea396b4",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "95967481-070a-4bfa-9b34-b1c24243f53f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -700,
+        -200
+      ],
+      "id": "9cc9b7a4-0323-44a4-8a03-481219f66124",
+      "name": "Webhook",
+      "webhookId": "95967481-070a-4bfa-9b34-b1c24243f53f"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -560,
+        -40
+      ],
+      "id": "54e5811a-29ce-4531-933d-c5543493bd12",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -400,
+        -20
+      ],
+      "id": "ef838e2d-3e4b-436a-909b-7f100039be44",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "url": "=https://viacep.com.br/ws/{{$json.body.cep}}/json/"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        -20
+      ],
+      "id": "334d6124-5b91-49a6-9423-eff7c68d82d7",
+      "name": "consulta_cep"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -160,
+        -200
+      ],
+      "id": "199b6a7b-07f9-46d6-a4b2-dff75557e5ea",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Sobre CEP",
+        "method": "POST",
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/95967481-070a-4bfa-9b34-b1c24243f53f",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "chatinput"
+            },
+            {
+              "name": "cep"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -980,
+        120
+      ],
+      "id": "e023326f-1385-42be-a7ee-6dbd7005223c",
+      "name": "agente_cep"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        300
+      ],
+      "id": "d5c05c88-c84e-42c5-a8d0-5a2860e0d49b",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.sessionId }}",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -420,
+        320
+      ],
+      "id": "639d7573-1542-4974-9106-2fcbbf20e54d",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -180,
+        140
+      ],
+      "id": "aef18cef-91a7-4a8e-a79a-d730fb077c13",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "url": "=https://open.cnpja.com/office/{{ $json.body.cnpj }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -260,
+        320
+      ],
+      "id": "7408dc6c-4d85-4acc-aed0-0d7478dca08a",
+      "name": "consulta_cnpj"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/f31399c2-d881-433c-aa87-af10f836ddf0",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "=sessionId"
+            },
+            {
+              "name": "chatInput"
+            },
+            {
+              "name": "cnpj"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -860,
+        0
+      ],
+      "id": "4c388464-0344-4229-a574-f626648bc9b1",
+      "name": "agente_cnpj"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.chatinput }}\n{{ $json.body.cep }}",
+        "options": {
+          "systemMessage": "Solicite o CEP e em seguida, consulte o CEP na tool **consulta_cep**"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -500,
+        -200
+      ],
+      "id": "a690c788-d016-47ec-90ab-71cc779076e4",
+      "name": "AI Agente CEP"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.chatInput }}\n{{ $json.body.cnpj }}",
+        "options": {
+          "systemMessage": "Solicite o CNPJe em seguida, consulte o CNPJ na tool **consulta_cnpj** e retorne os dados normalizados e formatados"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -520,
+        140
+      ],
+      "id": "f4c51b80-1d51-4375-b54c-4be6aa699aa7",
+      "name": "AI Agente CNPJ"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f31399c2-d881-433c-aa87-af10f836ddf0",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -740,
+        140
+      ],
+      "id": "584216ca-8798-458d-b088-4076db79096a",
+      "name": "Webhook1",
+      "webhookId": "f31399c2-d881-433c-aa87-af10f836ddf0"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-07-18T14:00:40.950Z",
+  "versionId": "a81dff7a-34f8-4455-a2c9-1afcf1dd4001"
+}

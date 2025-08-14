@@ -1,0 +1,623 @@
+{
+  "active": true,
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Boas Vindas",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http_filial": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "http_a_pagar": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Financeiro - CP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "http_params": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "http_inclui_CC": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "http_call_cp": {
+      "ai_tool": [
+        []
+      ]
+    },
+    "Agente Boas Vindas": {
+      "main": [
+        []
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Financeiro - CP",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Financeiro - CP",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente Financeiro - CP": {
+      "main": [
+        []
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "consulta_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agente_cep": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Boas Vindas",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente de CEP": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Agente Boas Vindas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Boas Vindas",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente de CEP",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-03T17:13:37.394Z",
+  "id": "qFNftzugo0kiOzND",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "SimpleIT - AI",
+  "nodes": [
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -3120,
+        -360
+      ],
+      "id": "3d94cdf7-5cdc-412f-a254-a652d6c6e5a3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEIT.IA.0001/1/F",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "parameters",
+              "valueProvider": "fieldValue",
+              "value": "=CIDADE='São Paulo'\n"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1420,
+        -40
+      ],
+      "id": "e2669c97-fb23-41a2-b427-43dd83fbfcd9",
+      "name": "http_filial",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "kJrQ1JCU6O9AD8xm",
+          "name": "Unnamed credential"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Chame essa tool para pesquisar lançamentos financeiros",
+        "url": "http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEIT.IA.0002/1/F",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -980,
+        160
+      ],
+      "id": "f1c4cc59-0654-42d8-8e8b-cfb3df5301b3",
+      "name": "http_a_pagar",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "kJrQ1JCU6O9AD8xm",
+          "name": "Unnamed credential"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEIT.IA.0003/1/F"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1400,
+        120
+      ],
+      "id": "e0616471-eacf-459b-af44-4735f702ca65",
+      "name": "http_params",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://erp-simpleit.sytes.net:8051/api/ctb/v1/costcenters",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"id\": \"1|02.1.2.9\",\n    \"companyId\": 1,\n    \"code\": \"02.1.2.9\",\n    \"name\": \"TESTE3\",\n    \"shortCode\": \"2129\",\n    \"freeField\": \"TESTE3\",\n    \"registerSituation\": \"T\",\n    \"allowEntry\": \"T\",\n    \"SPED\": \"T\",\n    \"createDate\": \"2025-04-04T00:00:00+00:00\",\n    \"recordCreatedOn\": \"2025-04-04T21:26:54+00:00\",\n    \"recordModifiedOn\": \"2025-04-04T21:26:54+00:00\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1400,
+        320
+      ],
+      "id": "e83240cb-cec1-4fb5-ae14-2cc0be63f888",
+      "name": "http_inclui_CC",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "kJrQ1JCU6O9AD8xm",
+          "name": "Unnamed credential"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/fbfebab4-de85-4271-bda3-2609aca683a1",
+        "sendQuery": true,
+        "parametersQuery": {
+          "values": [
+            {
+              "name": "Nome",
+              "valueProvider": "fieldValue",
+              "value": "{nome}"
+            },
+            {
+              "name": "Período",
+              "valueProvider": "fieldValue",
+              "value": "{periodo}"
+            }
+          ]
+        },
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "nome",
+              "description": "Nome do Usuário",
+              "type": "string"
+            },
+            {
+              "name": "periodo",
+              "description": "Período da Solicitação"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1420,
+        -200
+      ],
+      "id": "0594bbd3-c2de-4d98-a591-1f4639e16da3",
+      "name": "http_call_cp",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=Data e horário Atual: {{ $now }}\n\n### IDENTIDADE\nVocê é um **assistente da empresa SimpleiT - Soluções em Tecnologia de roteamento de chat inteligente** com a responsabilidade exclusiva de direcionar\na questão dos usuários para chats especializados.\n** Importante: você não responde diretamente ao usuário** - você apenas analisa a questão do usuário e seleciona o chat especializado apropriado e retornaa resposta \ngerado por esse chat sem modificações. \nVocê fala em Português e manda alguns emoticons nas frases. Sua abordagem é amigável, objetiva e orientada para resultados. \nSeu objetivo é coletar informações-chave para auxiliar os usuários nos seguintes assuntos:\n- Consulta de CEP -  o CEP sempre será sem caracteres especiais , apenas numeros.\n- Consulta de CPNJ - ** Ainda em desenvolvimento**\n- Consulta de Contas a Pagar - ** Ainda em desenvolvimento**\n\n## RESPONSABILIDADES CENTRAIS\n1. **Análise de intenção**: Identificar com precisão o contexto e a necessidade do usuário\n2. **Seleção de chat**: Determinar qual cha especialiado é mais adequado para a consulta\n3. **Execução do chat**: Acionar o chat selecionado para gerar a resposta\n4. **Entrega de resposta**: Fornecer a resposta exata gerada pelo chat especializado , sem alterações\n5. **Monitoramento de repetições**: Identificar quando um usuário repete a mesma pergunta múltiplas vezes\n\n## FLUXO DE OPERAÇÕES\n1. **Receber questão** do usuário\n2. **Analisar intenção** e contexto da conversa\n3. **Selecionar e executar** um único chat especializado apropriado.\n4. **Entregar a resposta** gerada pelo chat especializado sem modificações\n\n## 1. CHAT IA | Agente Boa vindas\n**Função**: Ponto de entrada para todas as conversas novas\n**QUANDO USAR**:\n- Sempre que o usuário iniciar uma nova conversa\n- Quando a intenção do usuário não está clara\n- Quando é necessário coletar informações iniciais\n\n**QUANDO NÃO USAR**:\n- Esse chat não responde dúvidas específicas sobre produtos e serviços\n- Esse chat não consulta informações detalhadas sobre a empresa\n- Esse chat não apresenta catalogos de produtos \n- Esse chat não faz recomendações personalizadas\n- Esse chat não processo intenções de compras\n\n## REGRAS OBRIGATÓRIAS\n### SEMPRE\n1. Seja direto nas respostas. Não ultrapasse 500 caracteres.\n2. Para quebrar linhas utilize 'n/n'.\n3. Sempre faça uma pergunta de cada vez.\n4. Iniciar novos atendimentos com o **CHAT IA - AGENTE BOAS VINDAS**\n5. Entregar a resposta exata sem modificação\n6 . Monitorar repetições de perguntas de usuários\n\n##NUNCA\n1. Responder ao usuário sem executar um chat especializado\n2. Executar multiplos chats simultaneamente\n3. Criar respostas próprias em vez de usar as dos chats\n4. Ignorar padrões de repetição nas perguntas dos usuários\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -2900,
+        -580
+      ],
+      "id": "7618d7e8-15b6-4d92-a27a-8de6cd2358a4",
+      "name": "Agente Boas Vindas"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Nome: {{ $json.query.nome }}\nPerído: {{ $json.query.periodo }}",
+        "options": {
+          "systemMessage": "=a Data e horário atual é {{ $now }}\n\nVocê pode apenas falar apenas sobre:\nContas a Pagar - usa a tool **http_a_pagar**\n\nSe o usuário perguntar outra coisa sem ser CONTAS A PAGAR ou relacionado a lançamentos financeiros a Pagar pode falar que você é o agente Finaceiro e só atende a solicitações desse Departamento.\n\nSe te perguntarem algo com besteira , palavrões, ou algo aleatório que não tem nada a ver com Financeiro , avisa que a pergunta é imprópria e que será enviada para os responsáveis da empresa para devidas providências.\n\nNão fale ou pergunte sobre ferramentas ou links.\nRetorne as informações logo que o usuário indicar as informações.\n\nSe perguntado sobre lançamentos a Pagar ou Contas a Pagar, vc fala que vai ajudar com os dados de pagamentos e vai ativar a tool **http_a_pagar** e pega as informações e trás o que o usuário solicitou.\n\nuse esse JSON como exemplo para pegar as informações\n\n {\n        \"CODCOLIGADA\": 1,\n        \"IDLAN\": 6958,\n        \"NUMERODOCUMENTO\": \"0000006958\",\n        \"NFOUDUP\": 0,\n        \"CLASSIFICACAO\": 0,\n        \"PAGREC\": 2,\n        \"STATUSLAN\": 0,\n        \"CODAPLICACAO\": \"F\",\n        \"HISTORICO\": \"TESTE 1\",\n        \"DATACRIACAO\": \"2025-04-04T00:00:00+00:00\",\n        \"DATAVENCIMENTO\": \"2025-04-04T00:00:00+00:00\",\n        \"DATAEMISSAO\": \"2025-04-04T00:00:00+00:00\",\n        \"DATAPREVBAIXA\": \"2025-04-04T00:00:00+00:00\",\n        \"DATAOP1\": \"2025-04-04T00:00:00+00:00\",\n        \"VALORORIGINAL\": 1500.0000,\n        \"VALORBAIXADO\": 0.0000,\n        \"VALORCAP\": 0.0000,\n        \"VALORJUROS\": 0.0000,\n        \"VALORDESCONTO\": 0.0000,\n        \"VALORCHEQUE\": 0.0000,\n        \"VALOROP1\": 0.0000,\n        \"VALOROP2\": 0.0000,\n        \"VALOROP3\": 0.0000,\n        \"VALOROP4\": 0.0000,\n        \"VALOROP5\": 0.0000,\n        \"VALOROP6\": 0.0000,\n        \"VALOROP7\": 0.0000,\n        \"VALOROP8\": 0.0000,\n        \"VALORMULTA\": 0.0000,\n        \"VALORAUXILIAR\": 1.0000,\n        \"VALORBASEIRRF\": 100.0000,\n        \"VALORIRRF\": 0.0000,\n        \"VALORREPASSE\": 0.0000,\n        \"VALORVENCIMENTOANTECIP\": 0.0000,\n        \"VALORNOTACREDITO\": 0.0000,\n        \"VALORADIANTAMENTO\": 0.0000,\n        \"VALORDEVOLUCAO\": 0.0000,\n        \"JUROSDIA\": 0.0000,\n        \"CAPMENSAL\": 0.0000,\n        \"TAXASVENDOR\": 0.0000,\n        \"JUROSVENDOR\": 0.0000,\n        \"CODCOLCFO\": 0,\n        \"CODCFO\": \"00487709\",\n        \"CODCOLCXA\": 1,\n        \"CODCXA\": \"0004\",\n        \"CODTDO\": \"01\",\n        \"CODFILIAL\": 1,\n        \"SERIEDOCUMENTO\": \"@@@\",\n        \"CODTB1FLX\": \"0001\",\n        \"TIPOCONTABILLAN\": 0,\n        \"CODMOEVALORORIGINAL\": \"R$\",\n        \"LIBAUTORIZADA\": 0,\n        \"STATUSEXPORTACAO\": 0,\n        \"NUMLOTECONTABIL\": 0,\n        \"STATUSEXTRATO\": 0,\n        \"CNABACEITE\": 0,\n        \"CNABSTATUS\": 0,\n        \"REEMBOLSAVEL\": 0,\n        \"USUARIO\": \"mestre\",\n        \"BAIXAAUTORIZADA\": 1,\n        \"TEMCHEQUEPARCIAL\": 0,\n        \"JAIMPRIMIU\": 0,\n        \"NUMBLOQUEIOS\": 0,\n        \"COTACAOINCLUSAO\": 1.000000000,\n        \"COTACAOBAIXA\": 0.000000000,\n        \"CARENCIAJUROS\": 0,\n        \"TIPOJUROSDIA\": 0,\n        \"USUARIOCRIACAO\": \"mestre\",\n        \"DATAALTERACAO\": \"2025-04-04T00:00:00+00:00\",\n        \"ALTERACAOBLOQUEADA\": 0,\n        \"MULTADIA\": 0.0000,\n        \"DESCONTADO\": 0,\n        \"VALORINSS\": 0.0000,\n        \"VALORDEDUCAO\": 0.0000,\n        \"APLICFORMULA\": \"F\",\n        \"INSSEMOUTRAEMPRESA\": 0.0000,\n        \"PERCENTBASEINSS\": 100.0000,\n        \"OCAUTONOMO\": 0,\n        \"PERCBASEINSSEMPREGADO\": 100.0000,\n        \"IMPOSTOEDITADO\": 0,\n        \"REUTILIZACAO\": 0,\n        \"CATEGORIAAUTONOMO\": 0,\n        \"VALORSESTSENAT\": 0.0000,\n        \"VRPERDAFINANCEIRA\": 0.0000,\n        \"VRBASEINSSOUTRAEMPRESA\": 0.0000,\n        \"VALORSERVICO\": 0.0000,\n        \"VRBASEINSS\": 0.0000,\n        \"VRBASEIRRF\": 0.0000,\n        \"IDHISTORICO\": 2870,\n        \"STATUSDDA\": 0,\n        \"ID\": 8163,\n        \"VALORDEDUCAODEPENDENTES\": 0.0000,\n        \"BAIXAPENDENTE\": 0,\n        \"STATUSAVP\": 0,\n        \"RECCREATEDBY\": \"mestre\",\n        \"RECCREATEDON\": \"2025-04-04T13:20:46+00:00\",\n        \"RECMODIFIEDBY\": \"mestre\",\n        \"RECMODIFIEDON\": \"2025-04-04T13:20:46+00:00\",\n        \"VALORORIGINALBX\": 0.0000,\n        \"VALORDESCONTOBX\": 0.0000,\n        \"VALORJUROSBX\": 0.0000,\n        \"VALORMULTABX\": 0.0000,\n        \"VALORCAPBX\": 0.0000,\n        \"VALOROP1BX\": 0.0000,\n        \"VALOROP2BX\": 0.0000,\n        \"VALOROP3BX\": 0.0000,\n        \"VALOROP4BX\": 0.0000,\n        \"VALOROP5BX\": 0.0000,\n        \"VALOROP6BX\": 0.0000,\n        \"VALOROP7BX\": 0.0000,\n        \"VALOROP8BX\": 0.0000,\n        \"VALORINSSBX\": 0.0000,\n        \"VALORIRRFBX\": 0.0000,\n        \"VALORSESTSENATBX\": 0.0000,\n        \"VALORDEVOLUCAOBX\": 0.0000,\n        \"VALORNOTACREDITOBX\": 0.0000,\n        \"VALORADIANTAMENTOBX\": 0.0000,\n        \"VALORJUROSVENDORBX\": 0.0000,\n        \"VALORRETENCOESBX\": 0.0000,\n        \"VALORPERDAFINANCEIRABX\": 0.0000,\n        \"VALORVINCULADO\": 0.0000,\n        \"MODELOCONTABILIZACAO\": 0,\n        \"MODELOCONTABILIZACAOBAIXA\": 0,\n        \"VALORDESCONTODUPLICATA\": 0.0000,\n        \"VALORDESCONTOACORDO\": 0.0000,\n        \"VALORJUROSACORDO\": 0.0000,\n        \"VALORACRESCIMOACORDO\": 0.0000,\n        \"MODOCALCULOBX\": 0,\n        \"STATUSORCAMENTO\": 0,\n        \"CODCOLTOMADOR\": 0,\n        \"VALORDEDUCAOVARIAVEL\": 0.0000,\n        \"STATUSLIQDUVIDOSA\": 0,\n        \"VALORDESCONTOPONTUALBX\": 0.0000,\n        \"STATUSNEGATIVACAO\": 0,\n        \"STATUSTERCEIRIZACAO\": 0,\n        \"CODCOLCONVENIO\": 1,\n        \"STATUSAPROVACAO\": 0\n    }\n\nSempre que perguntarem sobre valores use o campo VALORORIGINAL.\nSempre o pagamento será pela DATAVENCIMENTO\nSe perguntarem sobre resumo dos lançamentos traz o campo IDLAN , DATAVENCIMENTO, e VALORORIGINAL\n\nQuando te perguntarem sobre pagamentos hoje, amanhã, esse mês, use a data de hoje {{ $now }} para se posicionar e fazer as pesquisas com o campo DATAVENCIMENTO.\n\nsempre que o usuário solicitar alguma informação de Contas a Pagar, vencimento, Valores, use a tool **http_a_pagar** , mas não precisa falar para o usuário a ferramenta que vai usar, e quero que já mande a resposta imediata sem falar que vai mandar depois."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -1220,
+        -80
+      ],
+      "id": "e15c0e2e-5acc-417f-a062-f8b645d5b36a",
+      "name": "Agente Financeiro - CP",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {
+          "temperature": 0.5
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -1220,
+        140
+      ],
+      "id": "34cd83ed-cdbe-4065-bc74-b6a6dab7f357",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "v1",
+        "contextWindowLength": 50
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -1120,
+        140
+      ],
+      "id": "b5cf2aaa-8f90-4728-bd6b-6c05f86d9a54",
+      "name": "Simple Memory1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Agente Principal",
+        "height": 480,
+        "width": 740
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -3320,
+        -660
+      ],
+      "id": "5ffad7b7-07e0-410a-af2d-1016dad312e4",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Olá! 👋\nSou o Agente Virtual da SimpleIT - Soluções em Tecnologia, em que posso ajudar?",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -3260,
+        -580
+      ],
+      "id": "aea008fd-77d3-43d1-a8e0-094dbc1c3965",
+      "name": "When chat message received",
+      "webhookId": "c5e3527e-ea6b-485c-87d1-b09ff6cf6a71"
+    },
+    {
+      "parameters": {
+        "content": "Consulta CEP",
+        "height": 480,
+        "width": 820
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2480,
+        -660
+      ],
+      "id": "35cc10d7-8bac-422d-92d9-5273c1920e50",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -2420,
+        -340
+      ],
+      "id": "590aa52b-8c44-40b6-a836-e36c7c6c630d",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://viacep.com.br/ws/{{ $json.body.cep }}/json"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1820,
+        -340
+      ],
+      "id": "d34aedd5-54cb-4b93-aede-b97d4157d51d",
+      "name": "consulta_cep"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -1860,
+        -600
+      ],
+      "id": "9420b754-2db1-4f85-8cc2-178bdb185426",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook-n8n.simpleit.app.br/webhook/ba80bd72-82ac-4f8d-802c-1f5d0f6faaa5",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "chatInput"
+            },
+            {
+              "name": "cep"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -2700,
+        -360
+      ],
+      "id": "af217b9d-9b31-4cbf-840d-7df0f1b21333",
+      "name": "agente_cep"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Solicite o CEP e em seguida, consulte o CEP na tool consulta_cep"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -2220,
+        -600
+      ],
+      "id": "df962181-6881-44ba-99aa-3b17e4020de2",
+      "name": "Agente de CEP"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "85901f4d-fd59-4179-acd7-2935f2ec3a20",
+              "name": "sessionId",
+              "value": "={{ $json.sessionId }}",
+              "type": "string"
+            },
+            {
+              "id": "188aa68f-815d-4f34-916d-696e1610c500",
+              "name": "chatInput",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -3080,
+        -580
+      ],
+      "id": "1f1b2cbf-0fb8-4e63-9ac1-1704eae14cf0",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2820,
+        -360
+      ],
+      "id": "8636aa26-6bc6-4adc-9ba1-ddcb89e606f3",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.chatInput }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -2140,
+        -380
+      ],
+      "id": "bf233e8d-6967-45f7-a770-6fc60a177f6d",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ba80bd72-82ac-4f8d-802c-1f5d0f6faaa5",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -2460,
+        -600
+      ],
+      "id": "690f53fb-dca8-4d24-b68a-fbcb691c6802",
+      "name": "Webhook",
+      "webhookId": "ba80bd72-82ac-4f8d-802c-1f5d0f6faaa5"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-07-18T14:01:31.622Z",
+  "versionId": "7c1533f9-66c5-46e9-a5cc-1ea42b311053"
+}

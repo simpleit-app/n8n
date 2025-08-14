@@ -1,0 +1,159 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "SUCESSO",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ERRO!",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-18T14:06:11.882Z",
+  "id": "kks7JRiHlp5782ne",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[EAC] - Robo Captura NFSe",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -500,
+        -100
+      ],
+      "id": "233185da-e75f-44c0-9d9f-65a5cf44d6f8",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://roboeac.simpledfe.com.br/agendamento.php",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -180,
+        -40
+      ],
+      "id": "2a9ced03-809f-43f0-82fe-5bd775ebdd56",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ce59a568-c437-4547-be2a-931da3cffc4d",
+              "leftValue": "={{$json[\"data\"].endsWith(\"OK\")}}\n",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        40,
+        -40
+      ],
+      "id": "855916e3-ae29-429c-b8ef-dec08431aedf",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        300,
+        -220
+      ],
+      "id": "cbd24b30-2ace-4fa4-837d-d84da7964b7e",
+      "name": "SUCESSO"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        40
+      ],
+      "id": "0d31986b-2f51-4dfe-b195-2fc62dcf62e8",
+      "name": "ERRO!"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-18T14:22:18.678Z",
+  "versionId": "cdb15a81-d3ab-45fd-973b-33bd9cff863f"
+}

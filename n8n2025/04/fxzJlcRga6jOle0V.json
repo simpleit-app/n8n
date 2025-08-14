@@ -1,0 +1,97 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-15T23:22:51.159Z",
+  "id": "fxzJlcRga6jOle0V",
+  "meta": null,
+  "name": "SimpleIT - Login",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "52261898-3dc1-4b9f-af3d-fbafb919176f",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "d23c4fde-63a6-4f83-9730-dd91250b701d",
+      "name": "Webhook",
+      "webhookId": "52261898-3dc1-4b9f-af3d-fbafb919176f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://erp-simpleit.sytes.net:8051/api/connect/token",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"username\": \"{{ $json.query.usuario }}\",\n    \"password\": \"{{ $json.query.senha }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -160,
+        -80
+      ],
+      "id": "e722778b-e5e6-48bc-a4a2-095123df2463",
+      "name": "HTTP Request",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        60,
+        -80
+      ],
+      "id": "6389a6a1-64e0-4908-912e-3bc0fe8bf4f9",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-16T14:47:41.366Z",
+  "versionId": "654db6a7-9db7-4c8d-8300-ea75a81fbb63"
+}

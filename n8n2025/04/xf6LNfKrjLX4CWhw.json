@@ -1,0 +1,129 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-16T15:09:23.862Z",
+  "id": "xf6LNfKrjLX4CWhw",
+  "meta": null,
+  "name": "SimpleIT - Consulta Zona CloudFlare",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "dac815f5-51ac-45b6-8569-969abc300137",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -40
+      ],
+      "id": "dc7b7be8-00ed-44b7-8be5-c3c898b40819",
+      "name": "Webhook",
+      "webhookId": "dac815f5-51ac-45b6-8569-969abc300137"
+    },
+    {
+      "parameters": {
+        "url": "https://api.cloudflare.com/client/v4/zones/25c3e65f57b3cca76586e27af3295f54/dns_records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer DWIERfX9t_wKpeNQ-CX-d0gxblBRWlGswnTed2Xi"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -60,
+        -40
+      ],
+      "id": "9f0a9262-b6ff-4693-acbd-4d74b0e0eb17",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        -40
+      ],
+      "id": "f75fb68e-4330-4ad1-abfb-2ddec8cdb286",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const rootDomain = \"simpleit.app.br\";\n\nreturn items\n  .filter(item => item.json.result) // filtra só os que têm \"result\"\n  .flatMap(item => item.json.result) // espalha os registros DNS\n  .filter(record => record.name && record.name !== rootDomain) // ignora domínio raiz\n  .map(record => {\n    const full = record.name;\n    const subdomain = full.endsWith(`.${rootDomain}`)\n      ? full.replace(`.${rootDomain}`, \"\")\n      : full;\n    return { json: { subdomain } };\n  });\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        160,
+        -40
+      ],
+      "id": "aebacd99-82d0-4ef8-851b-24e12ff107c0",
+      "name": "Code",
+      "alwaysOutputData": true
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-16T15:24:00.245Z",
+  "versionId": "2d3b8b04-4252-4ba2-8b88-7ebb7e89dac6"
+}

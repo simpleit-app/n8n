@@ -1,0 +1,291 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-28T22:43:45.124Z",
+  "id": "yUGAZrfWOcdKvL4S",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Alelo 2 - Teste",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Planilha",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -800,
+        -440
+      ],
+      "id": "789b6945-e77b-4d00-adb4-bc1ee23ded22",
+      "name": "On form submission",
+      "webhookId": "18722d32-28b3-4072-8da6-16c43ce84a75"
+    },
+    {
+      "parameters": {
+        "binaryPropertyName": "=data",
+        "options": {
+          "includeEmptyCells": false,
+          "sheetName": "Resumo"
+        }
+      },
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        -580,
+        -440
+      ],
+      "typeVersion": 1,
+      "id": "0ac4ce25-b8ac-4a01-978d-93131d09492b",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "639bf92b-3a46-4211-af82-c12c2697d704",
+              "name": "__EMPTY_2",
+              "value": "={{ $json.__EMPTY_2 }}",
+              "type": "string"
+            },
+            {
+              "id": "b5453a22-fd53-46e5-ad40-776e5842cffe",
+              "name": "__EMPTY_7",
+              "value": "={{ $json.__EMPTY_7 }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -360,
+        -440
+      ],
+      "id": "a672ca59-203e-45bb-8e64-f8e30e8ebb31",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.__EMPTY_2 }}",
+                    "rightValue": "TAXA DE SERVIÇO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "9042e636-e3a4-45b4-b17a-dd58d794eb87"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "105b1f31-651e-47d3-ae81-d016d9b9f74d",
+                    "leftValue": "={{ $json.__EMPTY_2 }}",
+                    "rightValue": "VALOR DOS BENEFÍCIOS",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "4d928106-4c8f-428a-99f3-fe92f1fd26e6",
+                    "leftValue": "={{ $json.__EMPTY_2 }}",
+                    "rightValue": "CUSTO DE RECARGA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -160,
+        -440
+      ],
+      "id": "0f2a6ae9-3bcb-4c9f-8035-ad3f9126360e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.1,
+      "position": [
+        120,
+        -520
+      ],
+      "id": "5a4ef71b-9594-42cf-9265-fb79c0a3cda0",
+      "name": "Merge"
+    }
+  ],
+  "pinData": {
+    "Merge": [
+      {
+        "json": {
+          "__EMPTY_1": "",
+          "__EMPTY_2": "TAXA DE SERVIÇO",
+          "__EMPTY_7": "278.95"
+        }
+      },
+      {
+        "json": {
+          "__EMPTY_1": "",
+          "__EMPTY_2": "VALOR DOS BENEFÍCIOS",
+          "__EMPTY_7": "39079.4"
+        }
+      },
+      {
+        "json": {
+          "__EMPTY_1": "",
+          "__EMPTY_2": "VALOR DOS BENEFÍCIOS",
+          "__EMPTY_7": "273.56"
+        }
+      },
+      {
+        "json": {
+          "__EMPTY_1": "",
+          "__EMPTY_2": "CUSTO DE RECARGA",
+          "__EMPTY_7": "771.3"
+        }
+      },
+      {
+        "json": {
+          "__EMPTY_1": "",
+          "__EMPTY_2": "CUSTO DE RECARGA",
+          "__EMPTY_7": "5.4"
+        }
+      }
+    ]
+  },
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-07-18T14:00:09.392Z",
+  "versionId": "784306b6-11a7-40e5-979c-f2f1b61f053c"
+}

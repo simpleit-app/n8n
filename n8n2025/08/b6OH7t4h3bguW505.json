@@ -1,0 +1,352 @@
+{
+  "active": true,
+  "connections": {
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente RH - Centralizador",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente RH - Centralizador",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente RH - Dependentes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente RH - Centralizador",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente RH - Dependentes",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente RH - Dependentes",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dependentes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente RH - Dependentes",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Agente RH - Centralizador",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente Idade de Dependentes",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agente Idade de Dependentes": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente RH - Centralizador",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory2": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente Idade de Dependentes",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dependentes1": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente Idade de Dependentes",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-08-14T17:18:50.666Z",
+  "id": "b6OH7t4h3bguW505",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "[PortalRM.IA.RH.0001] - Assistente RH",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        128
+      ],
+      "id": "a37b64a7-3557-4281-acc3-0bd1bcd2f4f7",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -432,
+        128
+      ],
+      "id": "82cf6f22-5fe7-4b0b-b4c1-ca2f878a2823",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "Vc é um assistente centralizador.\nHoje nossa funcionalidade é apenas:\n\nConsulta de Dados Dependentes"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -448,
+        -64
+      ],
+      "id": "6efec61c-6ba7-46cb-84e0-3eaf19a8d954",
+      "name": "Agente RH - Centralizador"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Sou o agente que trata de dependentes",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=Você é um agente de RH que retorna dados dos dependentes dos Funcionários.\nVocê é especialista em Consulta de Dependentes.\n\nAntes de consultar e retornar os dados pergunte de qual Funcionário o usuário deseja consultar os dados.\n\nVocê vai consultar apenas por Funcionário, umpor vez.\n\nRetorne:\nNome do Dependente\nSexo\nData de Nascimento\n\nFormate de uma forma que fique com boa visualização\nCada informação em uma linha\n\nVocê vai pegar do JSON\n\n\n{\n\"CODCOLIGADA\": \n1,\n\"NOME_FUNCIONARIO\": \n\"ITAMAR MENDES DA SILVEIRA\",\n\"DATAADMISSAO\": \n\"1990-03-01T00:00:00+00:00\",\n\"SALARIO\": \n3192.8,\n\"NOME_DEPENDENTE\": \n\"TATIANA MENDES DA SILVEIRA\",\n\"CPF_DEPENDENTE\": \n\"\",\n\"SEXO_DEPENDENTE\": \n\"F\",\n\"DTNASCIMENTO_DEPENDENTE\": \n\"1980-07-10T00:00:00+00:00\"\n},\n{\n\"CODCOLIGADA\": \n1,\n\"NOME_FUNCIONARIO\": \n\"ITAMAR MENDES DA SILVEIRA\",\n\"DATAADMISSAO\": \n\"1990-03-01T00:00:00+00:00\",\n\"SALARIO\": \n3192.8,\n\"NOME_DEPENDENTE\": \n\"ROGERIO MENDES DA SILVEIRA\",\n\"CPF_DEPENDENTE\": \n\"\",\n\"SEXO_DEPENDENTE\": \n\"M\",\n\"DTNASCIMENTO_DEPENDENTE\": \n\"1987-07-30T00:00:00+00:00\"\n},\n{\n\"CODCOLIGADA\": \n1,\n\"NOME_FUNCIONARIO\": \n\"ITAMAR MENDES DA SILVEIRA\",\n\"DATAADMISSAO\": \n\"1990-03-01T00:00:00+00:00\",\n\"SALARIO\": \n3192.8,\n\"NOME_DEPENDENTE\": \n\"JORGE TAVARES DA SILVEIRA\",\n\"SEXO_DEPENDENTE\": \n\"M\",\n\"DTNASCIMENTO_DEPENDENTE\": \n\"1928-05-15T00:00:00+00:00\"\n},\n{\n\"CODCOLIGADA\": \n1,\n\n\nNOME_FUNCIONARIO e retornar os dependentes"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        -304,
+        240
+      ],
+      "id": "d908681e-7164-4dfc-9198-8896c44bba35",
+      "name": "Agente RH - Dependentes"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        416
+      ],
+      "id": "ccabdeef-05b2-4e1d-b9c6-3746891ecb68",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -272,
+        416
+      ],
+      "id": "fe11337b-3c8d-4b12-ada9-3254aec016b4",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "url": "http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/IA.RH.FUN.0001/1/P",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        -80,
+        416
+      ],
+      "id": "90445f03-3a3c-48eb-82f9-7ddf24d0c505",
+      "name": "Dependentes",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "BT6OVnGAM9UnilKC",
+          "name": "SimpleIT"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "Olá , eu sou o seu assistente virtual de RH.",
+        "options": {
+          "inputPlaceholder": "user"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -736,
+        -64
+      ],
+      "id": "a62aea27-e5bd-4905-bf8a-855ef716e883",
+      "name": "When chat message received",
+      "webhookId": "b62a449f-0043-4fe5-811d-e25fc587772d"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        112,
+        400
+      ],
+      "id": "4af6d6f1-5e78-41a2-bb3c-c49e5a00bee5",
+      "name": "Google Gemini Chat Model2",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Agente especialista em Retornar Dependentes por idade",
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "systemMessage": "=Hoje é {{ $now }}\n\nAqui você pode retornar os dependentes\n\nUsando:\nNOME_DEPENDENTE\": \n\"DTNASCIMENTO_DEPENDENTE\": \n\n\nVocê faz o cálculo para saber a idade com base na data de hoje e pode retornar os dados em forma de listagem.\nPode desconsiderar os meses, apenas anos cheios\n\nao mostrar a data formate DD/MM/YYYY\n\nMostre em formato de relatório\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        240
+      ],
+      "id": "63047d07-6c73-4862-9d06-4e5334dea1d3",
+      "name": "Agente Idade de Dependentes"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        400
+      ],
+      "id": "6d188578-9e76-4bd9-a88e-fbf1670b1fc2",
+      "name": "Simple Memory2"
+    },
+    {
+      "parameters": {
+        "url": "http://erp-simpleit.sytes.net:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/IA.RH.FUN.0001/1/P",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        416,
+        400
+      ],
+      "id": "d0b1df44-d3ec-410a-9175-ea71a273e8a1",
+      "name": "Dependentes1",
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "BT6OVnGAM9UnilKC",
+          "name": "SimpleIT"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-08-14T22:17:14.753Z",
+  "versionId": "94dccd0f-0811-4309-9ef3-52b24cf59131"
+}

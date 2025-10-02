@@ -1,0 +1,105 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-01T14:07:57.638Z",
+  "id": "QDQKBhGWXaUuBu4e",
+  "isArchived": false,
+  "meta": null,
+  "name": "SimpleDFe - Busca Fornecedor Sabin",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5496e76b-7d8e-450a-aff0-55a6d70c58eb",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "cnpj"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -608,
+        -16
+      ],
+      "id": "d0aba09c-1441-4346-abc4-53c27f418c25",
+      "name": "Webhook",
+      "webhookId": "5496e76b-7d8e-450a-aff0-55a6d70c58eb"
+    },
+    {
+      "parameters": {
+        "url": "=http://portal.albertsabin.com.br:8052/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEDFE.000001/0/T?parameters=CODCOLIGADA={{$json[\"query\"][\"CODCOLIGADA\"]}};CNPJ={{$json[\"query\"][\"CNPJ\"]}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        -16
+      ],
+      "id": "10a88c05-549c-4708-9cfd-3c623070e71d",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "UBBqjSOSK4ob1KUP",
+          "name": "Sabin"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -16
+      ],
+      "id": "b5b3dad2-a249-42e3-b6ae-493f679031e2",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "notesInFlow": false
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-01T16:19:21.409Z",
+  "versionId": "660721d1-10ad-4dca-abce-49f5124388d7"
+}

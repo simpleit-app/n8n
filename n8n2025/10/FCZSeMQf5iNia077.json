@@ -1,0 +1,105 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-10-02T21:51:34.451Z",
+  "id": "FCZSeMQf5iNia077",
+  "isArchived": false,
+  "meta": null,
+  "name": "SimpleDFe - Busca Fornecedor Trier",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "da844618-21bf-4c0b-bccc-232276687881",
+        "responseMode": "responseNode",
+        "options": {
+          "binaryPropertyName": "cnpj"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -608,
+        -16
+      ],
+      "id": "91efadb5-800e-4847-8d83-ef93f94e47cd",
+      "name": "Webhook",
+      "webhookId": "da844618-21bf-4c0b-bccc-232276687881"
+    },
+    {
+      "parameters": {
+        "url": "=http://sistemas.trier.eng.br:8051/api/framework/v1/consultaSQLServer/RealizaConsulta/SIMPLEDFE.000001/0/T?parameters=CODCOLIGADA={{$json[\"query\"][\"CODCOLIGADA\"]}};CNPJ={{$json[\"query\"][\"CNPJ\"]}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -416,
+        -16
+      ],
+      "id": "a6732071-04b8-4e8e-8e74-232aa22089c0",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "tF6EntwDk6TKNRnd",
+          "name": "Trier"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        -208,
+        -16
+      ],
+      "id": "3f9a3b47-6ed9-4642-a2ee-9075f5d2a85f",
+      "name": "Respond to Webhook",
+      "alwaysOutputData": true,
+      "retryOnFail": false,
+      "notesInFlow": false
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-10-02T21:52:59.284Z",
+  "versionId": "9cc89122-6ad9-41f4-806e-041c17d1fa3d"
+}

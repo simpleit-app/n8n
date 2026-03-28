@@ -1,0 +1,174 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-03-27T17:49:38.428Z",
+  "id": "FPC2CBQaYmNe5tUT",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Texto para Aprovação",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "d123c623-0830-4fc7-a260-5e1b6629a229",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -304,
+        64
+      ],
+      "id": "ca6e9310-f21a-4699-ba64-1912a6000881",
+      "name": "Webhook",
+      "webhookId": "d123c623-0830-4fc7-a260-5e1b6629a229"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        64
+      ],
+      "id": "431ca34f-9b7a-4278-9ecf-a01549083149",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('Webhook').item.json.body.texto }}",
+        "options": {
+          "systemMessage": "=Você vai pegar o texto e transformar em um texto profissional para que seja usado para solicitar uma aprovação.\n\nVai trazer apenas uma opção\n\nNão vai perguntar nada\n\nApenas retornar um texto com as informações que tiver não colocar informações que não temos\n\nTexto solicitando uma aprovação\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        64
+      ],
+      "id": "ae1ae570-db3b-41c4-b3f8-6c84cdd2a5c7",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        272
+      ],
+      "id": "2b5ec1a6-3b22-4e8b-b6d8-ac92c6cff6c3",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "qacSrwzIy7ATAN4A",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "1"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        144,
+        272
+      ],
+      "id": "ece3366d-21ac-42f2-ad02-cb3afb42fe53",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        480,
+        64
+      ],
+      "id": "f30eed6b-2c2e-4170-b123-7dc60f7d6dd0",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-03-27T19:25:08.024Z",
+  "versionId": "7d833fd8-cb33-48ff-8214-b4007e6253cf"
+}

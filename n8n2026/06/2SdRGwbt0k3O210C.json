@@ -1,0 +1,655 @@
+{
+  "active": false,
+  "connections": {
+    "Teste Manual": {
+      "main": [
+        [
+          {
+            "node": "Dados para teste manual",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados para teste manual": {
+      "main": [
+        [
+          {
+            "node": "Preparar email para IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho Mail - Novo Email": {
+      "main": [
+        [
+          {
+            "node": "Configurar Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configurar Teams": {
+      "main": [
+        [
+          {
+            "node": "Preparar email para IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar email para IA": {
+      "main": [
+        [
+          {
+            "node": "Identificar cliente por dominio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - Classificar email": {
+      "main": [
+        [
+          {
+            "node": "Montar mensagem Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar mensagem Teams": {
+      "main": [
+        [
+          {
+            "node": "Criar aprovação de envio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Identificar cliente por dominio": {
+      "main": [
+        [
+          {
+            "node": "Classificar tipo e projeto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar Adaptive Card Teams": {
+      "main": [
+        [
+          {
+            "node": "Enviar para Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classificar tipo e projeto": {
+      "main": [
+        [
+          {
+            "node": "Atualizar prompt com contexto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar prompt com contexto": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Classificar email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar aprovação de envio": {
+      "main": [
+        [
+          {
+            "node": "Montar Adaptive Card Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Aprovar Envio": {
+      "main": [
+        [
+          {
+            "node": "Carregar aprovação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Carregar aprovação": {
+      "main": [
+        [
+          {
+            "node": "Aprovação válida?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aprovação válida?": {
+      "main": [
+        [
+          {
+            "node": "Enviar email aprovado ao cliente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Responder navegador - erro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar email aprovado ao cliente": {
+      "main": [
+        [
+          {
+            "node": "Marcar como enviado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Marcar como enviado": {
+      "main": [
+        [
+          {
+            "node": "Responder navegador - enviado",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-06-10T18:41:10.003Z",
+  "id": "2SdRGwbt0k3O210C",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agente SimpleIT v5",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2ad2f459-af93-4e8b-8cc8-499d2d7caddc",
+      "name": "Teste Manual",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1504,
+        -1184
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "teams-url",
+              "name": "TEAMS_WEBHOOK_URL",
+              "value": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/477c3b154ff6472bab60631dd05004c2/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kBY7WGfXfI6o0D353zzW7BhOQIlMqrLVdJFmzHOyQEI",
+              "type": "string"
+            },
+            {
+              "id": "teste-from",
+              "name": "from",
+              "value": "cliente.teste@empresa.com.br",
+              "type": "string"
+            },
+            {
+              "id": "teste-to",
+              "name": "to",
+              "value": "favoreto@simpleit.com.br",
+              "type": "string"
+            },
+            {
+              "id": "teste-subject",
+              "name": "subject",
+              "value": "Teste Secretária IA - chamado urgente",
+              "type": "string"
+            },
+            {
+              "id": "teste-text",
+              "name": "textPlain",
+              "value": "Olá Matheus, estamos com erro na integração do RM e precisamos de retorno ainda hoje. Pode verificar, por favor?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a94c921c-a2cd-4e40-8168-627e9cb5d42b",
+      "name": "Dados para teste manual",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1248,
+        -1184
+      ],
+      "notes": "Use este caminho para testar OpenAI + Teams sem depender de e-mail novo."
+    },
+    {
+      "parameters": {
+        "options": {
+          "forceReconnect": 1
+        }
+      },
+      "id": "26ece262-755f-4a91-ac20-a24d87c36e2d",
+      "name": "Zoho Mail - Novo Email",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2.1,
+      "position": [
+        -1504,
+        -880
+      ],
+      "credentials": {
+        "imap": {
+          "id": "tDVkCR5m4GF3BUUG",
+          "name": "IMAP account"
+        }
+      },
+      "notes": "Credencial IMAP Zoho: imap.zoho.com | porta 993 | SSL ligado | usuário favoreto@simpleit.com.br."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "teams-url-live",
+              "name": "TEAMS_WEBHOOK_URL",
+              "value": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "0c83c7d8-a260-46a4-85c6-7c6f1312e59a",
+      "name": "Configurar Teams",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1248,
+        -880
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const email = $json;\n\nfunction pick(...values) {\n  for (const value of values) {\n    if (value !== undefined && value !== null && String(value).trim() !== '') return String(value);\n  }\n  return '';\n}\n\nconst from = pick(email.from?.text, email.from, email.sender, email.headers?.from, email.fromAddress, 'Não identificado');\nconst to = pick(email.to?.text, email.to, email.headers?.to, '');\nconst subject = pick(email.subject, '(sem assunto)');\nconst date = pick(email.date, new Date().toISOString());\nconst text = pick(email.textPlain, email.text, email.body, email.textHtml, email.html, email.summary, '');\n\nconst prompt = `\nVocê é a Secretária IA do Matheus, consultor de sistemas, TOTVS RM, SimpleIT e SimpleDFE.\n\nAnalise o e-mail abaixo e responda SOMENTE em JSON válido, sem markdown, com esta estrutura:\n\n{\n  \"prioridade\": \"ALTA | MEDIA | BAIXA\",\n  \"categoria\": \"SUPORTE | COMERCIAL | FINANCEIRO | REUNIAO | CONTRATO | PESSOAL | OUTRO\",\n  \"cliente_ou_projeto\": \"nome identificado ou NÃO IDENTIFICADO\",\n  \"resumo\": \"resumo curto e objetivo\",\n  \"pendencias\": [\"pendência 1\", \"pendência 2\"],\n  \"risco_ou_alerta\": \"algo importante ou vazio\",\n  \"resposta_sugerida\": \"resposta educada, profissional e curta, pronta para o Matheus revisar antes de enviar\",\n  \"precisa_responder\": true,\n  \"prazo_sugerido\": \"Hoje | Amanhã | Esta semana | Sem urgência\"\n}\n\nRegras:\n- Não invente informação.\n- Se for cobrança, erro de sistema, cliente irritado, proposta ou reunião, destaque em risco_ou_alerta.\n- A resposta sugerida deve ser em português do Brasil.\n- Nunca envie resposta diretamente ao cliente; apenas prepare para aprovação.\n\nE-MAIL:\nDe: ${from}\nPara: ${to}\nData: ${date}\nAssunto: ${subject}\n\nConteúdo:\n${text}\n`;\n\nreturn [{\n  json: {\n    ...email,\n    from,\n    to,\n    subject,\n    date,\n    text,\n    prompt,\n    TEAMS_WEBHOOK_URL: email.TEAMS_WEBHOOK_URL\n  }\n}];"
+      },
+      "id": "3a2e7709-bc7b-442e-8713-0bdaf5d0dfdd",
+      "name": "Preparar email para IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1040,
+        -1008
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4.1-mini\",\n  \"temperature\": 0.2,\n  \"response_format\": { \"type\": \"json_object\" },\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Você é uma secretária executiva de IA. Responda apenas JSON válido.\"},\n    {\"role\": \"user\", \"content\": {{ JSON.stringify($json.prompt) }}}\n  ]\n}",
+        "options": {}
+      },
+      "id": "50a16b5f-bd01-42b7-aacb-9a5408da0ca8",
+      "name": "OpenAI - Classificar email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -176,
+        -1008
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YHcVJJq1iwTjZORL",
+          "name": "Header Auth account"
+        }
+      },
+      "notes": "Credencial Header Auth: Name = Authorization | Value = Bearer SUA_CHAVE_OPENAI"
+    },
+    {
+      "parameters": {
+        "jsCode": "const original = $('Atualizar prompt com contexto').item.json;\nconst content = $json.choices?.[0]?.message?.content || '{}';\n\nlet ia;\ntry {\n  ia = JSON.parse(content);\n} catch (error) {\n  ia = {\n    prioridade: original.prioridade_sugerida_sistema || 'MEDIA',\n    categoria: original.tipo_email_sistema || 'OUTRO',\n    cliente_ou_projeto: original.cliente_identificado || 'NÃO IDENTIFICADO',\n    resumo: content || 'Não foi possível gerar resumo.',\n    pendencias: [],\n    risco_ou_alerta: 'A IA não retornou JSON válido.',\n    resposta_sugerida: '',\n    precisa_responder: true,\n    prazo_sugerido: original.prazo_sugerido_sistema || 'Hoje'\n  };\n}\n\nif (!ia.cliente_ou_projeto || ia.cliente_ou_projeto === 'NÃO IDENTIFICADO') {\n  ia.cliente_ou_projeto = original.cliente_identificado || 'NÃO IDENTIFICADO';\n}\n\nif (!ia.categoria || ia.categoria === 'OUTRO') {\n  ia.categoria = original.tipo_email_sistema || ia.categoria || 'OUTRO';\n}\n\nif (!ia.prioridade) {\n  ia.prioridade = original.prioridade_sugerida_sistema || 'MEDIA';\n}\n\nconst pendenciasTexto = Array.isArray(ia.pendencias) && ia.pendencias.length\n  ? ia.pendencias.map(p => `• ${p}`).join('\\n')\n  : '• Nenhuma pendência clara identificada.';\n\nconst corPrioridade = ia.prioridade === 'ALTA' ? '🔴' : ia.prioridade === 'MEDIA' ? '🟡' : '🟢';\n\nconst mensagemTeams = `🤖 **Secretária IA - Novo e-mail**\n\n${corPrioridade} **Prioridade:** ${ia.prioridade || 'MEDIA'}\n📂 **Categoria:** ${ia.categoria || original.tipo_email_sistema || 'OUTRO'}\n🏢 **Cliente:** ${original.cliente_identificado || 'NÃO IDENTIFICADO'}\n🌐 **Domínio:** ${original.dominio_cliente || 'nao-identificado'}\n📦 **Projeto:** ${original.projeto_detectado_sistema || 'NÃO IDENTIFICADO'}\n⏰ **Prazo sugerido:** ${ia.prazo_sugerido || original.prazo_sugerido_sistema || 'Hoje'}\n🧠 **Motivo:** ${original.motivo_prioridade_sistema || 'Análise automática.'}\n\n📧 **De:** ${original.from}\n📌 **Assunto:** ${original.subject}\n\n📝 **Resumo:**\n${ia.resumo || 'Sem resumo.'}\n\n✅ **Pendências:**\n${pendenciasTexto}\n\n⚠️ **Alerta:**\n${ia.risco_ou_alerta || 'Nenhum alerta importante.'}\n\n✍️ **Resposta sugerida:**\n${ia.resposta_sugerida || 'Nenhuma resposta sugerida.'}\n\n_Obs.: nada foi enviado ao cliente. Apenas análise para aprovação._`;\n\nreturn [{\n  json: {\n    ...original,\n    ...ia,\n    mensagemTeams,\n    TEAMS_WEBHOOK_URL: original.TEAMS_WEBHOOK_URL\n  }\n}];"
+      },
+      "id": "17041f49-d158-4c6b-93c3-9323a631744e",
+      "name": "Montar mensagem Teams",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        112,
+        -1008
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/477c3b154ff6472bab60631dd05004c2/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kBY7WGfXfI6o0D353zzW7BhOQIlMqrLVdJFmzHOyQEI",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.adaptiveCard) }}",
+        "options": {}
+      },
+      "id": "91b0f9a2-88a6-43d1-b01e-6c728b032b70",
+      "name": "Enviar para Teams",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        768,
+        -1008
+      ],
+      "notes": "Cole a URL do Workflow do Teams nos dois nodes: Dados para teste manual e Configurar Teams."
+    },
+    {
+      "parameters": {
+        "jsCode": "const textoCard = `${$json.mensagemTeams}\n\n━━━━━━━━━━━━━━━━━━━━\n✅ Clique no botão abaixo para ENVIAR a resposta sugerida ao cliente.\n\n📧 Destinatário: ${$json.destinatario_resposta}\n📌 Assunto: ${$json.assunto_resposta}`;\n\nreturn [\n  {\n    json: {\n      ...$json,\n      adaptiveCard: {\n        attachments: [\n          {\n            contentType: \"application/vnd.microsoft.card.adaptive\",\n            content: {\n              type: \"AdaptiveCard\",\n              version: \"1.4\",\n              body: [\n                {\n                  type: \"TextBlock\",\n                  text: textoCard,\n                  wrap: true\n                }\n              ],\n              actions: [\n                {\n                  type: \"Action.OpenUrl\",\n                  title: \"✅ OK, enviar resposta\",\n                  url: $json.approve_url\n                }\n              ]\n            }\n          }\n        ]\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        -1008
+      ],
+      "id": "9269993d-4685-4e99-a9a6-a5ca786c4053",
+      "name": "Montar Adaptive Card Teams"
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $json;\n\nfunction pick(...values) {\n  for (const value of values) {\n    if (value !== undefined && value !== null && String(value).trim() !== '') return String(value);\n  }\n  return '';\n}\n\nconst fromRaw = pick(item.from, item.fromAddress, item.headers?.from, '');\nconst emailMatch = fromRaw.match(/[A-Z0-9._%+-]+@([A-Z0-9.-]+\\.[A-Z]{2,})/i);\n\nlet dominio = emailMatch ? emailMatch[1].toLowerCase() : 'nao-identificado';\n\ndominio = dominio\n  .replace(/[>,;)]/g, '')\n  .trim();\n\nconst sufixos = [\n  '.com.br',\n  '.org.br',\n  '.edu.br',\n  '.gov.br',\n  '.net.br',\n  '.adv.br',\n  '.cont.br',\n  '.com',\n  '.org',\n  '.net',\n  '.edu',\n  '.gov',\n  '.br'\n];\n\nlet cliente = dominio;\n\nfor (const sufixo of sufixos) {\n  if (cliente.endsWith(sufixo)) {\n    cliente = cliente.slice(0, -sufixo.length);\n    break;\n  }\n}\n\n// Se tiver subdomínio, pega o nome principal antes do sufixo.\n// Ex: suporte.lbv.org.br -> lbv\nconst partes = cliente.split('.').filter(Boolean);\nif (partes.length > 1) {\n  cliente = partes[partes.length - 1];\n}\n\ncliente = cliente\n  .replace(/[-_]+/g, ' ')\n  .replace(/\\s+/g, ' ')\n  .trim()\n  .toUpperCase();\n\nif (!cliente || cliente === 'NAO IDENTIFICADO') {\n  cliente = 'NÃO IDENTIFICADO';\n}\n\nconst projeto = cliente === 'LBV' ? 'SimpleDFe / Integração RM' : 'NÃO IDENTIFICADO';\nconst prioridadePadrao = cliente === 'LBV' ? 'ALTA' : 'MEDIA';\nconst sla = cliente === 'LBV' ? 'Hoje' : 'A definir';\n\nreturn [{\n  json: {\n    ...item,\n    dominio_cliente: dominio,\n    cliente_identificado: cliente,\n    projeto_identificado: projeto,\n    prioridade_padrao_cliente: prioridadePadrao,\n    sla_cliente: sla\n  }\n}];"
+      },
+      "id": "3d417aa0-0bbf-49a8-a6bc-997f9258d0a7",
+      "name": "Identificar cliente por dominio",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        -1008
+      ],
+      "notes": "Identifica automaticamente o cliente pelo domínio do remetente. Ex: pessoa@lbv.org.br vira LBV. Não precisa cadastrar cliente."
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $json;\n\nconst prompt = `\nVocê é a Secretária IA do Matheus, consultor de sistemas, TOTVS RM, SimpleIT e SimpleDFE.\n\nIMPORTANTE:\nOs dados abaixo foram identificados automaticamente antes da IA.\nUse estes dados como fonte principal e só altere se o conteúdo do e-mail justificar claramente.\n\nCONTEXTO IDENTIFICADO:\nCliente: ${item.cliente_identificado}\nDomínio: ${item.dominio_cliente}\nTipo sugerido: ${item.tipo_email_sistema}\nProjeto sugerido: ${item.projeto_detectado_sistema}\nPrioridade sugerida: ${item.prioridade_sugerida_sistema}\nMotivo da prioridade: ${item.motivo_prioridade_sistema}\nPrazo sugerido: ${item.prazo_sugerido_sistema}\n\nAnalise o e-mail abaixo e responda SOMENTE em JSON válido, sem markdown, com esta estrutura:\n\n{\n  \"prioridade\": \"ALTA | MEDIA | BAIXA\",\n  \"categoria\": \"SUPORTE | COMERCIAL | FINANCEIRO | REUNIAO | CONTRATO | PESSOAL | OUTRO\",\n  \"cliente_ou_projeto\": \"use o cliente identificado e projeto quando existirem\",\n  \"resumo\": \"resumo curto e objetivo\",\n  \"pendencias\": [\"pendência 1\", \"pendência 2\"],\n  \"risco_ou_alerta\": \"algo importante ou vazio\",\n  \"resposta_sugerida\": \"resposta educada, profissional e curta, pronta para o Matheus revisar antes de enviar\",\n  \"precisa_responder\": true,\n  \"prazo_sugerido\": \"Hoje | Amanhã | Esta semana | Sem urgência\"\n}\n\nRegras:\n- Não invente informação.\n- Se cliente_identificado estiver preenchido, use esse cliente.\n- Use a categoria sugerida, salvo se o conteúdo indicar outra com clareza.\n- Use a prioridade sugerida, salvo se o e-mail for claramente menos ou mais urgente.\n- Se for cobrança, erro de sistema, cliente irritado, proposta ou reunião, destaque em risco_ou_alerta.\n- A resposta sugerida deve ser em português do Brasil.\n- Nunca envie resposta diretamente ao cliente; apenas prepare para aprovação.\n\nE-MAIL:\nDe: ${item.from}\nPara: ${item.to}\nData: ${item.date}\nAssunto: ${item.subject}\n\nConteúdo:\n${item.text}\n`;\n\nreturn [{\n  json: {\n    ...item,\n    prompt\n  }\n}];"
+      },
+      "id": "a0601bde-21b0-44f8-b109-2031ab403a07",
+      "name": "Atualizar prompt com contexto",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -448,
+        -1008
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $json;\n\nconst assunto = String(item.subject || '').toLowerCase();\nconst corpo = String(item.text || '').toLowerCase();\nconst texto = `${assunto} ${corpo}`;\n\nfunction contem(lista) {\n  return lista.some(palavra => texto.includes(palavra));\n}\n\nlet tipo_email = 'OUTRO';\nlet projeto_detectado = item.projeto_identificado || 'NÃO IDENTIFICADO';\nlet prioridade_sugerida = item.prioridade_padrao_cliente || 'MEDIA';\nlet motivo_prioridade = 'Prioridade padrão.';\n\n// SUPORTE / ERRO\nif (contem([\n  'erro', 'falha', 'problema', 'não funciona', 'nao funciona', 'parou',\n  'integração', 'integracao', 'rm', 'totvs', 'xml', 'nfe', 'nf-e',\n  'nfse', 'nfs-e', 'cte', 'ct-e', 'tss', 'rejeição', 'rejeicao',\n  'urgente', 'produção', 'producao'\n])) {\n  tipo_email = 'SUPORTE';\n  prioridade_sugerida = 'ALTA';\n  motivo_prioridade = 'Palavras de erro/suporte/urgência detectadas.';\n}\n\n// COMERCIAL\nif (contem([\n  'proposta', 'orçamento', 'orcamento', 'valor', 'preço', 'preco',\n  'contratar', 'contratação', 'contratacao', 'demonstração', 'demonstracao',\n  'apresentação', 'apresentacao', 'licença', 'licenca', 'mensalidade'\n])) {\n  tipo_email = 'COMERCIAL';\n  if (prioridade_sugerida !== 'ALTA') prioridade_sugerida = 'MEDIA';\n  motivo_prioridade = 'Possível oportunidade comercial.';\n}\n\n// FINANCEIRO\nif (contem([\n  'boleto', 'pagamento', 'nota fiscal', 'nf ', 'fatura', 'cobrança',\n  'cobranca', 'vencimento', 'pix', 'recibo', 'em aberto', 'inadimplente'\n])) {\n  tipo_email = 'FINANCEIRO';\n  if (contem(['vencido', 'em aberto', 'inadimplente', 'urgente'])) {\n    prioridade_sugerida = 'ALTA';\n    motivo_prioridade = 'Financeiro com possível cobrança/urgência.';\n  } else if (prioridade_sugerida !== 'ALTA') {\n    prioridade_sugerida = 'MEDIA';\n    motivo_prioridade = 'Assunto financeiro.';\n  }\n}\n\n// REUNIÃO\nif (contem([\n  'reunião', 'reuniao', 'call', 'agenda', 'agendar', 'meet',\n  'teams', 'horário', 'horario', 'disponibilidade', 'alinhamento'\n])) {\n  tipo_email = 'REUNIAO';\n  if (prioridade_sugerida !== 'ALTA') prioridade_sugerida = 'MEDIA';\n  motivo_prioridade = 'Pedido ou assunto de reunião.';\n}\n\n// CONTRATO\nif (contem([\n  'contrato', 'aditivo', 'assinatura', 'termo', 'proposta assinada',\n  'documento para assinatura'\n])) {\n  tipo_email = 'CONTRATO';\n  if (prioridade_sugerida !== 'ALTA') prioridade_sugerida = 'MEDIA';\n  motivo_prioridade = 'Assunto contratual.';\n}\n\n// PROJETO\nif (contem(['simpledfe', 'simple dfe', 'dfe', 'nf-e', 'nfe', 'nfs-e', 'nfse', 'ct-e', 'cte', 'xml'])) {\n  projeto_detectado = 'SimpleDFe';\n}\n\nif (contem(['nucleus', 'portal rm', 'educacional', 'portal educacional'])) {\n  projeto_detectado = 'Nucleus / TOTVS RM Educacional';\n}\n\nif (contem(['erp', 'financeiro', 'contas a pagar', 'contas a receber', 'borderô', 'bordero'])) {\n  projeto_detectado = 'SimpleERP / Financeiro';\n}\n\nif (contem(['totvs rm', 'rm ', 'fórmula visual', 'formula visual', 'metadados', 'relatório', 'relatorio'])) {\n  projeto_detectado = projeto_detectado === 'NÃO IDENTIFICADO'\n    ? 'TOTVS RM'\n    : projeto_detectado;\n}\n\nconst prazo_sugerido_sistema = prioridade_sugerida === 'ALTA'\n  ? 'Hoje'\n  : prioridade_sugerida === 'MEDIA'\n    ? 'Esta semana'\n    : 'Sem urgência';\n\nreturn [{\n  json: {\n    ...item,\n    tipo_email_sistema: tipo_email,\n    projeto_detectado_sistema: projeto_detectado,\n    prioridade_sugerida_sistema: prioridade_sugerida,\n    motivo_prioridade_sistema: motivo_prioridade,\n    prazo_sugerido_sistema\n  }\n}];"
+      },
+      "id": "3314cde6-20e2-47c6-b30c-ffdc226633b7",
+      "name": "Classificar tipo e projeto",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -656,
+        -1008
+      ],
+      "notes": "Classifica o tipo do e-mail e sugere projeto/prioridade antes de enviar para a OpenAI."
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\n\nif (!staticData.aprovacoes_email) {\n  staticData.aprovacoes_email = {};\n}\n\nconst fromRaw = String($json.from || '');\nconst match = fromRaw.match(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}/i);\nconst destinatario = match ? match[0] : fromRaw;\n\nconst assuntoResposta = String($json.subject || '').toLowerCase().startsWith('re:')\n  ? $json.subject\n  : `Re: ${$json.subject || '(sem assunto)'}`;\n\nconst corpoResposta = $json.resposta_sugerida || 'Olá, tudo bem? Recebi sua mensagem e vou verificar.';\n\nconst token = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;\n\n// IMPORTANTE: se seu domínio mudar, altere aqui.\nconst baseWebhookUrl = 'https://webhook-n8n.simpleit.app.br/webhook/aprovar-resposta-email';\n\nstaticData.aprovacoes_email[token] = {\n  token,\n  createdAt: new Date().toISOString(),\n  status: 'pendente',\n  destinatario,\n  assunto: assuntoResposta,\n  corpo: corpoResposta,\n  cliente: $json.cliente_identificado || $json.cliente_ou_projeto || 'NÃO IDENTIFICADO',\n  assuntoOriginal: $json.subject || '',\n  resumo: $json.resumo || '',\n  teamsWebhookUrl: $json.TEAMS_WEBHOOK_URL || ''\n};\n\nconst approveUrl = `${baseWebhookUrl}?token=${encodeURIComponent(token)}`;\n\nreturn [{\n  json: {\n    ...$json,\n    token_aprovacao: token,\n    destinatario_resposta: destinatario,\n    assunto_resposta: assuntoResposta,\n    corpo_resposta: corpoResposta,\n    approve_url: approveUrl\n  }\n}];"
+      },
+      "id": "f232ce25-788f-4be4-b8c3-f91986b19726",
+      "name": "Criar aprovação de envio",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        336,
+        -1008
+      ],
+      "notes": "Salva a resposta sugerida em memória do workflow e gera a URL de aprovação."
+    },
+    {
+      "parameters": {
+        "path": "aprovar-resposta-email",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "5b5a013d-134e-4897-a635-8c9666866c31",
+      "name": "Webhook Aprovar Envio",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1488,
+        -576
+      ],
+      "webhookId": "c471d819-b36d-4196-9540-9f2311430eb2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\n\nconst token = $json.query?.token || $json.token || $json.body?.token;\n\nif (!token) {\n  return [{\n    json: {\n      aprovado: false,\n      erro: 'Token não informado.'\n    }\n  }];\n}\n\nconst registro = staticData.aprovacoes_email?.[token];\n\nif (!registro) {\n  return [{\n    json: {\n      aprovado: false,\n      erro: 'Aprovação não encontrada ou expirada.',\n      token\n    }\n  }];\n}\n\nif (registro.status === 'enviado') {\n  return [{\n    json: {\n      aprovado: false,\n      erro: 'Este e-mail já foi enviado anteriormente.',\n      token,\n      registro\n    }\n  }];\n}\n\nregistro.status = 'aprovado';\nregistro.approvedAt = new Date().toISOString();\nstaticData.aprovacoes_email[token] = registro;\n\nreturn [{\n  json: {\n    aprovado: true,\n    token,\n    ...registro\n  }\n}];"
+      },
+      "id": "53eaa7d3-daa4-4a3b-ba99-e04c4fe07a0a",
+      "name": "Carregar aprovação",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1248,
+        -576
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "aprovado",
+              "leftValue": "={{$json.aprovado}}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "30dbb7b0-9047-4930-88ae-3c6cc6f5d325",
+      "name": "Aprovação válida?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1008,
+        -576
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "favoreto@simpleit.com.br",
+        "toEmail": "={{$json.destinatario}}",
+        "subject": "={{$json.assunto}}",
+        "options": {}
+      },
+      "id": "c06e3aa0-110c-49c7-b13f-632746174333",
+      "name": "Enviar email aprovado ao cliente",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -752,
+        -656
+      ],
+      "webhookId": "1dd4f44b-94e8-4201-8103-9f17557944f5",
+      "retryOnFail": true,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "smtp": {
+          "id": "SdVHlMqESQG1E3H2",
+          "name": "SMTP password app"
+        }
+      },
+      "notes": "Configure credencial SMTP Zoho: smtp.zoho.com | porta 465 SSL | usuário favoreto@simpleit.com.br."
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\n\nif ($json.token && staticData.aprovacoes_email?.[$json.token]) {\n  staticData.aprovacoes_email[$json.token].status = 'enviado';\n  staticData.aprovacoes_email[$json.token].sentAt = new Date().toISOString();\n}\n\nreturn [{\n  json: {\n    ...$json,\n    mensagemResposta: `✅ E-mail enviado com sucesso para ${$json.destinatario}.`\n  }\n}];"
+      },
+      "id": "4fb76150-7b5c-4e9d-8ac7-8dd32fb02127",
+      "name": "Marcar como enviado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -512,
+        -656
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json.mensagemResposta || '✅ E-mail enviado com sucesso. Pode fechar esta aba.'}}",
+        "options": {}
+      },
+      "id": "8e050817-f2ef-47c7-a10b-7774a6fe5b5f",
+      "name": "Responder navegador - enviado",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -272,
+        -656
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{'❌ Não foi possível enviar: ' + ($json.erro || 'erro desconhecido')}}",
+        "options": {}
+      },
+      "id": "87de8905-5c69-44e0-a3cb-da4be7108ea5",
+      "name": "Responder navegador - erro",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        -752,
+        -480
+      ]
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "global": {
+      "aprovacoes_email": {
+        "1781117166835-bwd90pud": {
+          "token": "1781117166835-bwd90pud",
+          "createdAt": "2026-06-10T18:46:06.835Z",
+          "status": "aprovado",
+          "destinatario": "MFavoreto@lbv.org.br",
+          "assunto": "Re: Boleto",
+          "corpo": "Olá Matheus, estamos verificando a situação do boleto solicitado e retornaremos com as informações o mais breve possível.",
+          "cliente": "LBV",
+          "assuntoOriginal": "Boleto",
+          "resumo": "Solicitação de lembrete sobre boleto pendente.",
+          "teamsWebhookUrl": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+          "approvedAt": "2026-06-10T18:47:09.626Z"
+        },
+        "1781117470679-kbr2l39y": {
+          "token": "1781117470679-kbr2l39y",
+          "createdAt": "2026-06-10T18:51:10.679Z",
+          "status": "aprovado",
+          "destinatario": "MFavoreto@lbv.org.br",
+          "assunto": "Re: Boleto",
+          "corpo": "Olá Matheus, estamos verificando a situação do boleto solicitado e retornaremos o mais breve possível. Obrigado pelo contato.",
+          "cliente": "LBV",
+          "assuntoOriginal": "Boleto",
+          "resumo": "Solicitação de envio ou confirmação de boleto pendente",
+          "teamsWebhookUrl": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+          "approvedAt": "2026-06-10T18:51:20.170Z"
+        },
+        "1781117670844-oaojoztq": {
+          "token": "1781117670844-oaojoztq",
+          "createdAt": "2026-06-10T18:54:30.844Z",
+          "status": "aprovado",
+          "destinatario": "MFavoreto@lbv.org.br",
+          "assunto": "Re: Boleto",
+          "corpo": "Olá Matheus, recebi sua mensagem sobre o boleto. Poderia, por favor, informar se há alguma pendência específica ou dúvida para que possamos ajudar da melhor forma? Aguardo seu retorno.",
+          "cliente": "LBV",
+          "assuntoOriginal": "Boleto",
+          "resumo": "Solicitação relacionada a boleto para o cliente LBV.",
+          "teamsWebhookUrl": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+          "approvedAt": "2026-06-10T18:54:36.714Z"
+        },
+        "1781118286876-u4n9fp5h": {
+          "token": "1781118286876-u4n9fp5h",
+          "createdAt": "2026-06-10T19:04:46.876Z",
+          "status": "aprovado",
+          "destinatario": "MFavoreto@lbv.org.br",
+          "assunto": "Re: Boleto",
+          "corpo": "Olá Matheus, poderia, por favor, informar qual boleto você está solicitando e os detalhes necessários para emissão? Assim poderemos agilizar o atendimento.",
+          "cliente": "LBV",
+          "assuntoOriginal": "Boleto",
+          "resumo": "Solicitação relacionada a boleto para o cliente LBV.",
+          "teamsWebhookUrl": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+          "approvedAt": "2026-06-10T19:05:58.893Z"
+        }
+      }
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2026-06-10T19:08:34.617Z",
+  "versionId": "9e85cce0-8a37-481c-a7b3-e37dd14eaf1e"
+}

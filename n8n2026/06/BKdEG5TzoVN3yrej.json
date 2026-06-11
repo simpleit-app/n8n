@@ -1,0 +1,330 @@
+{
+  "active": false,
+  "connections": {
+    "Teste Manual": {
+      "main": [
+        [
+          {
+            "node": "Dados para teste manual",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados para teste manual": {
+      "main": [
+        [
+          {
+            "node": "Preparar email para IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho Mail - Novo Email": {
+      "main": [
+        [
+          {
+            "node": "Configurar Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configurar Teams": {
+      "main": [
+        [
+          {
+            "node": "Preparar email para IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar email para IA": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Classificar email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - Classificar email": {
+      "main": [
+        [
+          {
+            "node": "Montar mensagem Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar mensagem Teams": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enviar para Teams": {
+      "main": [
+        []
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Enviar para Teams",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-06-10T14:26:17.407Z",
+  "id": "BKdEG5TzoVN3yrej",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Agente SimpleIT v1",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "87dbd2a1-5369-4d4b-b686-9d636cdce34a",
+      "name": "Teste Manual",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -624,
+        -96
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "teams-url",
+              "name": "TEAMS_WEBHOOK_URL",
+              "value": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/477c3b154ff6472bab60631dd05004c2/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kBY7WGfXfI6o0D353zzW7BhOQIlMqrLVdJFmzHOyQEI",
+              "type": "string"
+            },
+            {
+              "id": "teste-from",
+              "name": "from",
+              "value": "cliente.teste@empresa.com.br",
+              "type": "string"
+            },
+            {
+              "id": "teste-to",
+              "name": "to",
+              "value": "favoreto@simpleit.com.br",
+              "type": "string"
+            },
+            {
+              "id": "teste-subject",
+              "name": "subject",
+              "value": "Teste Secretária IA - chamado urgente",
+              "type": "string"
+            },
+            {
+              "id": "teste-text",
+              "name": "textPlain",
+              "value": "Olá Matheus, estamos com erro na integração do RM e precisamos de retorno ainda hoje. Pode verificar, por favor?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "30fc2e76-e952-45a4-915c-6594b1411e49",
+      "name": "Dados para teste manual",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -368,
+        -96
+      ],
+      "notes": "Use este caminho para testar OpenAI + Teams sem depender de e-mail novo."
+    },
+    {
+      "parameters": {
+        "options": {
+          "forceReconnect": 1
+        }
+      },
+      "id": "89273707-ea09-4852-9c23-e009c8d1ab92",
+      "name": "Zoho Mail - Novo Email",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2.1,
+      "position": [
+        -624,
+        208
+      ],
+      "credentials": {
+        "imap": {
+          "id": "tDVkCR5m4GF3BUUG",
+          "name": "IMAP account"
+        }
+      },
+      "notes": "Credencial IMAP Zoho: imap.zoho.com | porta 993 | SSL ligado | usuário favoreto@simpleit.com.br."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "teams-url-live",
+              "name": "TEAMS_WEBHOOK_URL",
+              "value": "https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/e09ad01d3090481f962753976f201b23/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=wQr67rEvcA5yGvjd0d_TSzQnSOGr2ufLZbrxAIPIUjo",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "f03a7c95-c88d-4e59-820f-7c4cb4c54eb9",
+      "name": "Configurar Teams",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -368,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const email = $json;\n\nfunction pick(...values) {\n  for (const value of values) {\n    if (value !== undefined && value !== null && String(value).trim() !== '') return String(value);\n  }\n  return '';\n}\n\nconst from = pick(email.from?.text, email.from, email.sender, email.headers?.from, email.fromAddress, 'Não identificado');\nconst to = pick(email.to?.text, email.to, email.headers?.to, '');\nconst subject = pick(email.subject, '(sem assunto)');\nconst date = pick(email.date, new Date().toISOString());\nconst text = pick(email.textPlain, email.text, email.body, email.textHtml, email.html, email.summary, '');\n\nconst prompt = `\nVocê é a Secretária IA do Matheus, consultor de sistemas, TOTVS RM, SimpleIT e SimpleDFE.\n\nAnalise o e-mail abaixo e responda SOMENTE em JSON válido, sem markdown, com esta estrutura:\n\n{\n  \"prioridade\": \"ALTA | MEDIA | BAIXA\",\n  \"categoria\": \"SUPORTE | COMERCIAL | FINANCEIRO | REUNIAO | CONTRATO | PESSOAL | OUTRO\",\n  \"cliente_ou_projeto\": \"nome identificado ou NÃO IDENTIFICADO\",\n  \"resumo\": \"resumo curto e objetivo\",\n  \"pendencias\": [\"pendência 1\", \"pendência 2\"],\n  \"risco_ou_alerta\": \"algo importante ou vazio\",\n  \"resposta_sugerida\": \"resposta educada, profissional e curta, pronta para o Matheus revisar antes de enviar\",\n  \"precisa_responder\": true,\n  \"prazo_sugerido\": \"Hoje | Amanhã | Esta semana | Sem urgência\"\n}\n\nRegras:\n- Não invente informação.\n- Se for cobrança, erro de sistema, cliente irritado, proposta ou reunião, destaque em risco_ou_alerta.\n- A resposta sugerida deve ser em português do Brasil.\n- Nunca envie resposta diretamente ao cliente; apenas prepare para aprovação.\n\nE-MAIL:\nDe: ${from}\nPara: ${to}\nData: ${date}\nAssunto: ${subject}\n\nConteúdo:\n${text}\n`;\n\nreturn [{\n  json: {\n    ...email,\n    from,\n    to,\n    subject,\n    date,\n    text,\n    prompt,\n    TEAMS_WEBHOOK_URL: email.TEAMS_WEBHOOK_URL\n  }\n}];"
+      },
+      "id": "af529b61-9738-49a4-8083-dfe373fe2aab",
+      "name": "Preparar email para IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -96,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4.1-mini\",\n  \"temperature\": 0.2,\n  \"response_format\": { \"type\": \"json_object\" },\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Você é uma secretária executiva de IA. Responda apenas JSON válido.\"},\n    {\"role\": \"user\", \"content\": {{ JSON.stringify($json.prompt) }}}\n  ]\n}",
+        "options": {}
+      },
+      "id": "cb26af5c-a730-40e6-a7eb-f241dc22c343",
+      "name": "OpenAI - Classificar email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        208,
+        80
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 3000,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YHcVJJq1iwTjZORL",
+          "name": "Header Auth account"
+        }
+      },
+      "notes": "Credencial Header Auth: Name = Authorization | Value = Bearer SUA_CHAVE_OPENAI"
+    },
+    {
+      "parameters": {
+        "jsCode": "const original = $('Preparar email para IA').item.json;\nconst content = $json.choices?.[0]?.message?.content || '{}';\n\nlet ia;\ntry {\n  ia = JSON.parse(content);\n} catch (error) {\n  ia = {\n    prioridade: 'MEDIA',\n    categoria: 'OUTRO',\n    cliente_ou_projeto: 'NÃO IDENTIFICADO',\n    resumo: content || 'Não foi possível gerar resumo.',\n    pendencias: [],\n    risco_ou_alerta: 'A IA não retornou JSON válido.',\n    resposta_sugerida: '',\n    precisa_responder: true,\n    prazo_sugerido: 'Hoje'\n  };\n}\n\nconst pendenciasTexto = Array.isArray(ia.pendencias) && ia.pendencias.length\n  ? ia.pendencias.map(p => `• ${p}`).join('\\n')\n  : '• Nenhuma pendência clara identificada.';\n\nconst corPrioridade = ia.prioridade === 'ALTA' ? '🔴' : ia.prioridade === 'MEDIA' ? '🟡' : '🟢';\n\nconst mensagemTeams = `🤖 **Secretária IA - Novo e-mail**\n\n${corPrioridade} **Prioridade:** ${ia.prioridade || 'MEDIA'}\n📂 **Categoria:** ${ia.categoria || 'OUTRO'}\n👤 **Cliente/Projeto:** ${ia.cliente_ou_projeto || 'NÃO IDENTIFICADO'}\n⏰ **Prazo sugerido:** ${ia.prazo_sugerido || 'Hoje'}\n\n📧 **De:** ${original.from}\n📌 **Assunto:** ${original.subject}\n\n📝 **Resumo:**\n${ia.resumo || 'Sem resumo.'}\n\n✅ **Pendências:**\n${pendenciasTexto}\n\n⚠️ **Alerta:**\n${ia.risco_ou_alerta || 'Nenhum alerta importante.'}\n\n✍️ **Resposta sugerida:**\n${ia.resposta_sugerida || 'Nenhuma resposta sugerida.'}\n\n_Obs.: nada foi enviado ao cliente. Apenas análise para aprovação._`;\n\nreturn [{\n  json: {\n    ...original,\n    ...ia,\n    mensagemTeams,\n    TEAMS_WEBHOOK_URL: original.TEAMS_WEBHOOK_URL\n  }\n}];"
+      },
+      "id": "38ee4250-61b1-435a-8fa0-ed7b0bd1c595",
+      "name": "Montar mensagem Teams",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://default7566b1c81390404780fde0be9458d4.39.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/477c3b154ff6472bab60631dd05004c2/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=kBY7WGfXfI6o0D353zzW7BhOQIlMqrLVdJFmzHOyQEI",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.adaptiveCard) }}",
+        "options": {}
+      },
+      "id": "5fc42d92-e5a8-44fa-8b86-7b5945eaec89",
+      "name": "Enviar para Teams",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        912,
+        80
+      ],
+      "notes": "Cole a URL do Workflow do Teams nos dois nodes: Dados para teste manual e Configurar Teams."
+    },
+    {
+      "parameters": {
+        "content": "API KEY OpenAI\n\n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",
+        "width": 864
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -112,
+        -208
+      ],
+      "typeVersion": 1,
+      "id": "b1284ee8-277b-48ad-b645-f5239302516f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      adaptiveCard: {\n        attachments: [\n          {\n            contentType: \"application/vnd.microsoft.card.adaptive\",\n            content: {\n              type: \"AdaptiveCard\",\n              version: \"1.4\",\n              body: [\n                {\n                  type: \"TextBlock\",\n                  text: $json.mensagemTeams,\n                  wrap: true\n                }\n              ]\n            }\n          }\n        ]\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        688,
+        80
+      ],
+      "id": "67001177-c5c1-41a1-bea6-ee9f805b385f",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Zoho Mail - Novo Email": {
+      "lastMessageUid": 4
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-06-10T18:01:49.034Z",
+  "versionId": "88f0635e-bd3b-4daa-a254-33c281ec77d9"
+}

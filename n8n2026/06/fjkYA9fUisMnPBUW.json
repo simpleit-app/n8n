@@ -1,0 +1,193 @@
+{
+  "active": false,
+  "connections": {
+    "Teste Manual": {
+      "main": [
+        [
+          {
+            "node": "Montar prompt da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho Mail - Novo Email": {
+      "main": [
+        [
+          {
+            "node": "Montar prompt da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Montar prompt da IA": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Resumir e Priorizar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - Resumir e Priorizar": {
+      "main": [
+        [
+          {
+            "node": "Tratar resposta da IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tratar resposta da IA": {
+      "main": [
+        [
+          {
+            "node": "Enviar resumo para Matheus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-06-10T13:15:01.474Z",
+  "id": "fjkYA9fUisMnPBUW",
+  "isArchived": true,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7f2f6ff5-c3f8-4ee5-9dc1-886c4a97002e",
+      "name": "Teste Manual",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        128,
+        432
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4f8f9025-6a7d-40ad-8539-35075eabb012",
+      "name": "Zoho Mail - Novo Email",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        128,
+        656
+      ],
+      "credentials": {
+        "imap": {
+          "id": "tDVkCR5m4GF3BUUG",
+          "name": "IMAP account"
+        }
+      },
+      "notes": "Configure a credencial IMAP com: Host imap.zoho.com | Porta 993 | SSL true | User: seu email Zoho | Password: senha ou app password."
+    },
+    {
+      "parameters": {
+        "jsCode": "const email = $json;\n\nfunction pick(...values) {\n  for (const value of values) {\n    if (value !== undefined && value !== null && String(value).trim() !== '') return value;\n  }\n  return '';\n}\n\nconst from = pick(email.from?.text, email.from, email.sender, email.headers?.from);\nconst to = pick(email.to?.text, email.to, email.headers?.to);\nconst subject = pick(email.subject, '(sem assunto)');\nconst date = pick(email.date, new Date().toISOString());\nconst text = pick(email.textPlain, email.text, email.body, email.textHtml, email.html, '');\n\nconst prompt = `\nVocê é a Secretária IA do Matheus, consultor de sistemas/TOTVS/SimpleIT.\n\nAnalise o e-mail abaixo e devolva em português do Brasil, em formato objetivo.\n\nRegras:\n- Classifique prioridade: ALTA, MÉDIA ou BAIXA.\n- Identifique cliente/projeto se possível.\n- Resuma em até 5 linhas.\n- Liste pendências práticas.\n- Sugira uma resposta curta e educada.\n- Se parecer cobrança, suporte urgente, erro de sistema, reunião ou proposta comercial, destaque.\n\nE-MAIL:\nDe: ${from}\nPara: ${to}\nData: ${date}\nAssunto: ${subject}\n\nConteúdo:\n${text}\n`;\n\nreturn [{\n  json: {\n    from,\n    to,\n    subject,\n    date,\n    text,\n    prompt\n  }\n}];"
+      },
+      "id": "701b3b5f-f3a6-46de-b7b0-4357598651fb",
+      "name": "Montar prompt da IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gpt-4.1-mini\",\n  \"temperature\": 0.2,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"Você é uma secretária executiva de IA. Seja objetivo, educado e prático.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {{ JSON.stringify($json.prompt) }}\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "21b6574b-2d62-4903-81ed-1de5ddea4f3d",
+      "name": "OpenAI - Resumir e Priorizar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        656,
+        560
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YHcVJJq1iwTjZORL",
+          "name": "Header Auth account"
+        }
+      },
+      "notes": "Credencial: HTTP Header Auth | Name: Authorization | Value: Bearer SUA_CHAVE_OPENAI"
+    },
+    {
+      "parameters": {
+        "jsCode": "const resposta = $json.choices?.[0]?.message?.content || 'Não foi possível gerar o resumo.';\nreturn [{\n  json: {\n    resumoIA: resposta,\n    assuntoOriginal: $('Montar prompt da IA').item.json.subject,\n    remetenteOriginal: $('Montar prompt da IA').item.json.from,\n    dataOriginal: $('Montar prompt da IA').item.json.date\n  }\n}];"
+      },
+      "id": "d5d41b41-a37f-44ae-9eef-aa3048f21457",
+      "name": "Tratar resposta da IA",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        928,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "favoreto@simpleit.com.br",
+        "toEmail": "favoreto@simpleit.com.br",
+        "subject": "=Secretária IA - {{$json.assuntoOriginal}}",
+        "options": {}
+      },
+      "id": "b1e79851-310a-4b34-88f4-f5cbf6be4020",
+      "name": "Enviar resumo para Matheus",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        560
+      ],
+      "webhookId": "57532300-634b-4650-994f-513c5ac37940",
+      "credentials": {
+        "smtp": {
+          "id": "pyd4YuV04IC9jIDh",
+          "name": "IMAP account"
+        }
+      },
+      "notes": "Configure SMTP Zoho: smtp.zoho.com | Porta 465 SSL ou 587 TLS | usuário e senha/app password."
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Zoho Mail - Novo Email": {
+      "lastMessageUid": 4
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2026-06-10T17:48:20.891Z",
+  "versionId": "85131708-3623-4206-9b37-2a6a56e19962"
+}

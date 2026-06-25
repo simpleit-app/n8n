@@ -1,0 +1,761 @@
+{
+  "active": false,
+  "activeVersion": null,
+  "activeVersionId": null,
+  "connections": {
+    "Rodar a cada 5 minutos": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Buscar contas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho - Buscar contas": {
+      "main": [
+        [
+          {
+            "node": "Selecionar conta agenda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selecionar conta agenda": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Buscar emails não lidos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho - Buscar emails não lidos": {
+      "main": [
+        [
+          {
+            "node": "Separar emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Separar emails": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Info anexos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho - Info anexos": {
+      "main": [
+        [
+          {
+            "node": "Selecionar ICS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selecionar ICS": {
+      "main": [
+        [
+          {
+            "node": "Tem ICS?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Tem ICS?": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Baixar ICS",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zoho - Marcar como lido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zoho - Baixar ICS": {
+      "main": [
+        [
+          {
+            "node": "Extrair dados do ICS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair dados do ICS": {
+      "main": [
+        [
+          {
+            "node": "É cancelamento?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "É cancelamento?": {
+      "main": [
+        [
+          {
+            "node": "Buscar evento pelo UID",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Buscar evento para atualizar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar evento pelo UID": {
+      "main": [
+        [
+          {
+            "node": "Preparar exclusão",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar exclusão": {
+      "main": [
+        [
+          {
+            "node": "Evento encontrado?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evento encontrado?": {
+      "main": [
+        [
+          {
+            "node": "Excluir evento cancelado",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zoho - Marcar como lido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Excluir evento cancelado": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Marcar como lido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Criar na Agenda Central1": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Marcar como lido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Buscar evento para atualizar": {
+      "main": [
+        [
+          {
+            "node": "Preparar atualização ou criação",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Preparar atualização ou criação": {
+      "main": [
+        [
+          {
+            "node": "Evento já existe?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evento já existe?": {
+      "main": [
+        [
+          {
+            "node": "Atualizar evento existente",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Criar na Agenda Central1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Atualizar evento existente": {
+      "main": [
+        [
+          {
+            "node": "Zoho - Marcar como lido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2026-06-24T18:37:41.987Z",
+  "id": "ik07A53LuIc6vgBE",
+  "isArchived": false,
+  "meta": null,
+  "name": "Agenda SimpleIT - Zoho API para Google Calendar com atualização e cancelamento",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "id": "aa00c107-17d7-4abb-a088-a64697e154b2",
+      "name": "Rodar a cada 5 minutos",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -3072,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://mail.zoho.com/api/accounts",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "9a058fdd-a9d0-4ef0-b58f-a9d5e469a685",
+      "name": "Zoho - Buscar contas",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        -2832,
+        224
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "HPRMWSTARDTks8di",
+          "name": "Oauth Zoho Mail Agenda"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const contas = $json.data || [];\nconst conta = contas.find(c => String(c.primaryEmailAddress || c.emailAddress || '').toLowerCase() === 'agenda@simpleit.com.br') || contas[0];\n\nif (!conta) {\n  throw new Error('Nenhuma conta Zoho encontrada.');\n}\n\nreturn [{ json: { accountId: conta.accountId } }];"
+      },
+      "id": "42b3198a-d976-4860-81bb-d4c1cf554f8e",
+      "name": "Selecionar conta agenda",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2592,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://mail.zoho.com/api/accounts/{{$json.accountId}}/messages/view",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "status",
+              "value": "unread"
+            },
+            {
+              "name": "limit",
+              "value": "10"
+            },
+            {
+              "name": "attachedMails",
+              "value": "true"
+            },
+            {
+              "name": "sortBy",
+              "value": "date"
+            },
+            {
+              "name": "sortorder",
+              "value": "false"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "972b72b9-b5ad-4e43-8509-d7c1d3b15133",
+      "name": "Zoho - Buscar emails não lidos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        -2352,
+        224
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "HPRMWSTARDTks8di",
+          "name": "Oauth Zoho Mail Agenda"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const accountId = $('Selecionar conta agenda').first().json.accountId;\nconst emails = $json.data || [];\n\nreturn emails.map(e => ({\n  json: {\n    accountId,\n    folderId: e.folderId,\n    messageId: e.messageId,\n    subject: e.subject,\n    fromAddress: e.fromAddress\n  }\n}));"
+      },
+      "id": "551b2554-1094-4e48-83e4-6e58c4c57f4e",
+      "name": "Separar emails",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2112,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://mail.zoho.com/api/accounts/{{$json.accountId}}/folders/{{$json.folderId}}/messages/{{$json.messageId}}/attachmentinfo",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "includeInline",
+              "value": "true"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "78728077-ad34-4919-9bf7-b8619f6d625f",
+      "name": "Zoho - Info anexos",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        -1872,
+        224
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "HPRMWSTARDTks8di",
+          "name": "Oauth Zoho Mail Agenda"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const email = $('Separar emails').item.json;\n\nconst anexos = $json.data?.attachments || [];\nconst inline = $json.data?.inline || [];\nconst todos = [...anexos, ...inline];\n\nconst ics = todos.find(a =>\n  String(a.attachmentName || a.fileName || '')\n    .toLowerCase()\n    .endsWith('.ics')\n);\n\nif (!ics) {\n  return [\n    {\n      json: {\n        ...email,\n        hasICS: false,\n        motivo: 'Nenhum .ics encontrado via Zoho API neste e-mail.'\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      ...email,\n      hasICS: true,\n      attachmentId: ics.attachmentId,\n      attachmentName: ics.attachmentName || ics.fileName\n    }\n  }\n];"
+      },
+      "id": "fbfcc81d-cbcc-4120-8b28-f122ac4665ff",
+      "name": "Selecionar ICS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1632,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://mail.zoho.com/api/accounts/{{$json.accountId}}/folders/{{$json.folderId}}/messages/{{$json.messageId}}/attachments/{{$json.attachmentId}}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {}
+      },
+      "id": "8fc53067-0202-459a-8949-5bb928264d58",
+      "name": "Zoho - Baixar ICS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        -1280,
+        224
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "HPRMWSTARDTks8di",
+          "name": "Oauth Zoho Mail Agenda"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "function unfoldICS(text) {\n  return String(text || '').replace(/\\r?\\n[ \\t]/g, '');\n}\n\nfunction getEventBlock(ics) {\n  const match = ics.match(/BEGIN:VEVENT([\\s\\S]*?)END:VEVENT/i);\n  return match ? match[1] : ics;\n}\n\nfunction getField(block, field) {\n  const lines = block.split(/\\r?\\n/);\n\n  for (const line of lines) {\n    if (line.startsWith(field + ':') || line.startsWith(field + ';')) {\n      return line.substring(line.indexOf(':') + 1).trim();\n    }\n  }\n\n  return '';\n}\n\nfunction cleanText(value) {\n  return String(value || '')\n    .replace(/\\\\n/g, '\\n')\n    .replace(/\\\\,/g, ',')\n    .replace(/\\\\;/g, ';')\n    .trim();\n}\n\nfunction parseDate(value) {\n  if (!value) return null;\n\n  const m = value.match(\n    /^(\\d{4})(\\d{2})(\\d{2})T(\\d{2})(\\d{2})(\\d{2})?$/\n  );\n\n  if (!m) return null;\n\n  return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6] || '00'}-03:00`;\n}\n\nconst ics = unfoldICS($json.data);\nconst eventBlock = getEventBlock(ics);\n\nconst method = String(getField(ics, 'METHOD') || '').toUpperCase();\nconst status = String(getField(eventBlock, 'STATUS') || '').toUpperCase();\n\nconst titulo = cleanText(getField(eventBlock, 'SUMMARY')) || 'Compromisso';\nconst descricao = cleanText(getField(eventBlock, 'DESCRIPTION'));\nconst local = cleanText(getField(eventBlock, 'LOCATION'));\n\nconst inicioRaw = getField(eventBlock, 'DTSTART');\nconst fimRaw = getField(eventBlock, 'DTEND');\n\nconst inicio = parseDate(inicioRaw);\nconst fim = parseDate(fimRaw);\n\nconst uid = getField(eventBlock, 'UID');\nconst isCancelamento = method === 'CANCEL' || status === 'CANCELLED';\n\nif (!uid) {\n  throw new Error('ICS sem UID. Não consigo controlar criação/cancelamento com segurança.');\n}\n\nif (!isCancelamento && (!inicio || !fim)) {\n  throw new Error(`Não consegui converter data/hora. DTSTART: ${inicioRaw} | DTEND: ${fimRaw}`);\n}\n\nreturn [\n  {\n    json: {\n      titulo,\n      descricao: `${descricao}\\n\\nUID: ${uid}`,\n      local,\n      inicio,\n      fim,\n      uid,\n      method,\n      status,\n      isCancelamento,\n      accountId: $('Selecionar ICS').item.json.accountId,\n      messageId: $('Selecionar ICS').item.json.messageId,\n      debug: {\n        inicioRaw,\n        fimRaw,\n        method,\n        status\n      }\n    }\n  }\n];"
+      },
+      "id": "9761a168-af94-40a9-b7a5-9b268cb18378",
+      "name": "Extrair dados do ICS",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1072,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "={{ 'https://mail.zoho.com/api/accounts/' + $('Selecionar ICS').item.json.accountId + '/updatemessage' }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { mode: 'markAsRead', messageId: [ $('Selecionar ICS').item.json.messageId ] } }}",
+        "options": {}
+      },
+      "id": "49d168db-f1e3-4dc6-ba31-33a76e89a1e9",
+      "name": "Zoho - Marcar como lido",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        240,
+        352
+      ],
+      "credentials": {
+        "oAuth2Api": {
+          "id": "HPRMWSTARDTks8di",
+          "name": "Oauth Zoho Mail Agenda"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "Primary"
+        },
+        "start": "={{ $json.inicio }}",
+        "end": "={{ $json.fim }}",
+        "additionalFields": {
+          "description": "={{ $json.descricao }}",
+          "location": "={{ $json.local }}",
+          "sendUpdates": "none",
+          "summary": "={{ $json.titulo }}"
+        }
+      },
+      "id": "683c3265-54ce-46a2-8660-99c565cd5770",
+      "name": "Criar na Agenda Central1",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        0,
+        480
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Z3ODZdLBt2Beum3s",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasICS === true }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "2d86f300-a5f6-4911-b9d9-d57489f28f9a",
+      "name": "Tem ICS?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1520,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.isCancelamento === true }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "0b81a5f1-3c71-499c-abe9-a9c38b3d34f1",
+      "name": "É cancelamento?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -944,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "Primary"
+        },
+        "limit": 10,
+        "options": {
+          "query": "={{ $json.uid }}"
+        }
+      },
+      "id": "5f949c9d-d767-42d2-a02f-450eee7b4327",
+      "name": "Buscar evento pelo UID",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        80
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Z3ODZdLBt2Beum3s",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const eventos = $input.all().map(i => i.json);\nconst uid = $('Extrair dados do ICS').first().json.uid;\n\nconst evento = eventos.find(e =>\n  JSON.stringify(e).includes(uid)\n);\n\nif (!evento) {\n  return [\n    {\n      json: {\n        ...$('Extrair dados do ICS').first().json,\n        eventoEncontrado: false,\n        mensagem: 'Cancelamento recebido, mas nenhum evento com esse UID foi encontrado na agenda.'\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      ...$('Extrair dados do ICS').first().json,\n      eventoEncontrado: true,\n      eventId: evento.id\n    }\n  }\n];"
+      },
+      "id": "108dc761-6a60-4890-b73d-1b235bca5e2b",
+      "name": "Preparar exclusão",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -464,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.eventoEncontrado === true }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "a3d15423-3c23-4491-a630-38aa3d181c5a",
+      "name": "Evento encontrado?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "Primary"
+        },
+        "eventId": "={{ $json.eventId }}",
+        "options": {}
+      },
+      "id": "fb165da0-43e7-4304-8624-97f0dcd33838",
+      "name": "Excluir evento cancelado",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Z3ODZdLBt2Beum3s",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "Primary"
+        },
+        "limit": 10,
+        "options": {
+          "query": "={{ $json.uid }}"
+        }
+      },
+      "id": "92d939c9-75fa-48a0-b160-4a1f4fe0175c",
+      "name": "Buscar evento para atualizar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        -688,
+        352
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Z3ODZdLBt2Beum3s",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const eventos = $input.all().map(i => i.json);\nconst dados = $('Extrair dados do ICS').item.json;\n\nconst evento = eventos.find(e => JSON.stringify(e).includes(dados.uid));\n\nif (!evento) {\n  return [\n    {\n      json: {\n        ...dados,\n        eventoEncontrado: false\n      }\n    }\n  ];\n}\n\nreturn [\n  {\n    json: {\n      ...dados,\n      eventoEncontrado: true,\n      eventId: evento.id\n    }\n  }\n];"
+      },
+      "id": "347d7553-8e3c-4e9a-8fbe-3545e75a8a1e",
+      "name": "Preparar atualização ou criação",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -464,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.eventoEncontrado === true }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "d7e57cd5-a76d-4482-a0e0-0d669edd8a8a",
+      "name": "Evento já existe?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -224,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "primary",
+          "mode": "list",
+          "cachedResultName": "Primary"
+        },
+        "eventId": "={{ $json.eventId }}",
+        "updateFields": {
+          "description": "={{ $json.descricao }}",
+          "end": "={{ $json.fim }}",
+          "location": "={{ $json.local }}",
+          "sendUpdates": "none",
+          "start": "={{ $json.inicio }}",
+          "summary": "={{ $json.titulo }}"
+        }
+      },
+      "id": "ab06d693-f103-4584-8ee7-29cebdbb38fa",
+      "name": "Atualizar evento existente",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        0,
+        240
+      ],
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "Z3ODZdLBt2Beum3s",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "repo_name": "n8n",
+  "repo_owner": "simpleit-app",
+  "repo_path": "n8n",
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "shared": [
+    {
+      "updatedAt": "2026-06-24T18:37:41.987Z",
+      "createdAt": "2026-06-24T18:37:41.987Z",
+      "role": "workflow:owner",
+      "workflowId": "ik07A53LuIc6vgBE",
+      "projectId": "xrwGtTqOG4mXerBv"
+    }
+  ],
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2026-06-24T18:37:41.987Z",
+  "versionId": "0f0d80be-9980-4bf9-af88-494dcb7d084a"
+}
